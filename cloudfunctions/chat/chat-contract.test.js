@@ -148,8 +148,9 @@ test('他人风险回答yes返回固定求助步骤且不标记用户危机', as
   assert.match(result.reply, /不要独自承担救援/);
 });
 
-test('HTTP触发仍返回兼容合同', async () => {
-  const response = await chat.main({
+test('HTTP 形态的 event 不再被解析为对话请求', async () => {
+  enqueue(okBody('普通回复'));
+  const result = await chat.main({
     httpMethod: 'POST',
     headers: { referer: 'http://localhost:3000/' },
     body: JSON.stringify({
@@ -157,10 +158,9 @@ test('HTTP触发仍返回兼容合同', async () => {
       messages: [{ role: 'user', content: '我准备今晚跳楼' }]
     })
   });
-  assert.equal(response.statusCode, 200);
-  const body = JSON.parse(response.body);
-  assert.equal(body.isCrisis, true);
-  assert.equal(body.safety.level, 'crisis');
+  // 入口只认小程序直调的顶层字段：body 里的内容不会被解析，也不会返回 HTTP 响应壳。
+  assert.equal(result.statusCode, undefined);
+  assert.notEqual(result.isCrisis, true);
 });
 
 // ── emotion_label 合同用例（新增） ──────────────────────────────

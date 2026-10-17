@@ -4,7 +4,7 @@
   "functions": [
     {
       "name": "chat",
-      "runtime": "Nodejs18.15",
+      "runtime": "Nodejs24.11",
       "installDependency": true,
       "timeout": 60,
       "envVariables": {
@@ -22,7 +22,7 @@
     },
     {
       "name": "ocd",
-      "runtime": "Nodejs18.15",
+      "runtime": "Nodejs24.11",
       "installDependency": true,
       "timeout": 60
     }

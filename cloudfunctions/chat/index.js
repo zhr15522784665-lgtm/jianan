@@ -867,68 +867,10 @@ async function callLLM(system, messages, llm, structured) {
 }
 
 // ---------------- 入口 ----------------
-// 同时支持两种调用方式：
-//   1) 小程序云开发 SCF 触发：event = { personaId, messages }
-//   2) 公网网站（CloudStudio 静态站）经 HTTP 触发调用：event = { httpMethod, body(字符串), headers }
-//      body = { personaId, messages }。前端不持有任何 Key，Key 只留在云端。
-/**
- * 包装对话服务的 HTTP 响应。
- * @param {number} statusCode HTTP 状态码。
- * @param {*} body 待编码的响应体。
- * @param {boolean} [isJson] 是否将响应体编码为 JSON。
- * @returns {object} 含 CORS 头的 HTTP 响应。
- */
-function corsResp(statusCode, body, isJson = true) {
-  return {
-    statusCode,
-    headers: {
-      'Content-Type': isJson ? 'application/json' : 'text/plain; charset=utf-8',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST,OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
-    },
-    body: isJson ? (typeof body === 'string' ? body : JSON.stringify(body)) : body
-  };
-}
-
+// 仅支持小程序云开发 SCF 触发：event = { personaId, messages, safetyContext }。
+// Key 只存在于云端环境变量，前端不持有，也不存在浏览器直连模型的通道。
 exports.main = async (event) => {
-  let personaId,
-    messages,
-    safetyContext,
-    isHttp = false;
-  if (event && (event.httpMethod || typeof event.body === 'string')) {
-    isHttp = true;
-    if (event.httpMethod === 'OPTIONS') return corsResp(204, '');
-    // 仅允许本站点与本地调用，防止 Key 被任意第三方盗刷。
-    // 注意：公网部署域名会随重新部署变化，这里做成「前缀白名单」而不是写死完整域名，
-    // 否则换一次部署地址就被 403 拦掉（历史踩坑）。
-    const referer = (event.headers && (event.headers.referer || event.headers.Referer)) || '';
-    // 后缀白名单，不写死完整域名 —— 公网部署地址会随每次发布变化，
-    // 写死就会出现「换一次域名就被 403 拦掉」（历史踩坑，已发生过两轮）：
-    //   第一轮：写死 37be0bdd...app.workbuddy.link → 换域名后 403
-    //   第二轮：只放行 .app.workbuddy.link → 新版域名 .app.workbuddy.host 又被 403
-    // 所以这里把 workbuddy 的两种域名后缀都列上，以后换域名只需按需追加后缀。
-    const allowedSuffix = [
-      '.app.workbuddy.link', // 旧版公网域名后缀
-      '.app.workbuddy.host', // 新版公网域名后缀
-      '.workbuddy.host',
-      'localhost',
-      '127.0.0.1'
-    ];
-    if (!allowedSuffix.some((d) => referer.includes(d)))
-      return corsResp(403, { ok: false, error: 'forbidden' });
-    let parsed;
-    try {
-      parsed = JSON.parse(event.body || '{}');
-    } catch (e) {
-      return corsResp(400, { ok: false, error: 'bad json' });
-    }
-    personaId = parsed.personaId;
-    messages = parsed.messages;
-    safetyContext = parsed.safetyContext;
-  } else {
-    ({ personaId, messages, safetyContext } = event || {});
-  }
+  let { personaId, messages, safetyContext } = event || {};
 
   messages = normalizeMessages(messages);
   safetyContext = normalizeSafetyContext(safetyContext);
@@ -1082,7 +1024,7 @@ exports.main = async (event) => {
       null,
       null
     );
-    return isHttp ? corsResp(200, crisis) : crisis;
+    return crisis;
   }
 
   // 用户已经通过结构化按钮确认“他人正处于即时危险”时，必须给出确定、
@@ -1115,7 +1057,7 @@ exports.main = async (event) => {
       ocdPayload,
       oMode
     );
-    return isHttp ? corsResp(200, otherPersonDanger) : otherPersonDanger;
+    return otherPersonDanger;
   }
 
   if (!inputCheck.pass) {
@@ -1148,7 +1090,7 @@ exports.main = async (event) => {
       ocdPayload,
       oMode
     );
-    return isHttp ? corsResp(200, blocked) : blocked;
+    return blocked;
   }
 
   if (mode === 'on' && effectiveSafety.shouldAskSafetyCheck) {
@@ -1171,7 +1113,7 @@ exports.main = async (event) => {
       ocdPayload,
       oMode
     );
-    return isHttp ? corsResp(200, safetyCheck) : safetyCheck;
+    return safetyCheck;
   }
 
   try {
@@ -1225,7 +1167,7 @@ exports.main = async (event) => {
       ocdPayload,
       oMode
     );
-    return isHttp ? corsResp(200, result) : result;
+    return result;
   } catch (e) {
     // 把错误分类与提示原样返回给前端：前端据此给出可定位的中文提示，
     // 而不是笼统的「网络异常」——那会让人误以为是手机网络问题，白排查半天。
@@ -1258,7 +1200,7 @@ exports.main = async (event) => {
       ocdPayload,
       oMode
     );
-    return isHttp ? corsResp(200, err) : err;
+    return err;
   }
 };
 
