@@ -1,0 +1,62 @@
+<!-- pages/about/about.wxml -->
+<view class="container about">
+  <view class="brand-block">
+    <view class="brand-logo">🏝️</view>
+    <view class="brand-name">见岸</view>
+    <view class="brand-slogan">你的心灵避风港</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">🏝️ 见岸是什么</view>
+    <view class="about-p">见岸是一个面向普通人的 AI 心理陪伴者。它不诊断、不开药、不替代专业治疗，只做一件事：在你愿意开口的时候，认真听，温柔地接住你的情绪，并在合适的时机轻轻科普一点心理学小知识。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">🌱 我们相信</view>
+    <view class="about-p">· 说出来本身就有力量。
+· 心理困扰很常见，不丢人。
+· 求助是勇敢，不是软弱。
+· 当你撑不住时，专业帮助值得被认真对待。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">⚠️ 重要说明</view>
+    <view class="about-p">见岸由人工智能驱动，不能替代医生、精神科或心理治疗。如果你或身边的人正处于危机中，请立即联系下方热线，或前往就近医疗机构。</view>
+  </view>
+
+  <view class="card crisis-card">
+    <view class="about-title danger">🆘 心理援助热线</view>
+    <view class="hot" wx:for="{{hotlines}}" wx:key="tel" data-tel="{{item.tel}}" bindtap="callHotline" bindlongpress="copyTel">
+      <view class="hot-main">
+        <view class="hot-name">{{item.name}}</view>
+        <view class="hot-note" wx:if="{{item.note}}">{{item.note}}</view>
+      </view>
+      <view class="hot-right">
+        <text class="hot-tel">{{item.tel}}</text>
+        <text class="hot-call">拨打</text>
+      </view>
+    </view>
+    <view class="hot-more" bindtap="goHotlines">
+      <text>📍 查看全部 {{provCount}} 个地区的官方热线 ›</text>
+    </view>
+    <view class="hot-tip">以上号码来自国家及各地卫生健康部门公开渠道。若号码或服务时间有调整，以主办方最新公告为准；遇到紧急情况，请优先拨打 120。</view>
+  </view>
+
+  <view class="privacy">🔒 心情与旧版工具记录保存在本机；OCD 自评、暴露阶梯和症状日志会在你单独同意后保存到云端，仅用于你的账号隔离读取，不用于训练。</view>
+
+  <view class="card data-card">
+    <view class="about-title">🗂️ 我的数据</view>
+    <view class="about-p data-hint">心情打卡、对话历史、番茄与冥想统计、手记保存在本机。OCD 自评、暴露阶梯和症状日志在单独同意后保存在云端，并按微信身份隔离。你可以在对应工具中查看和管理。</view>
+    <view class="data-actions">
+      <view class="data-btn ghost {{exporting ? 'is-busy' : ''}}" bindtap="exportMyData">{{exporting ? '正在导出…' : '导出备份'}}</view>
+      <view class="data-btn ghost {{exporting ? 'is-busy' : ''}}" bindtap="importMyData">导入恢复</view>
+    </view>
+    <view class="data-btn danger wide" bindtap="clearMyData">清除我的数据</view>
+    <view class="data-btn danger wide" bindtap="clearCloudData">删除云端健康自助记录</view>
+  </view>
+
+  <view class="legal-links">
+    <navigator class="legal-link" url="/pages/privacy/privacy" hover-class="legal-link-hover">隐私政策 ›</navigator>
+    <navigator class="legal-link" url="/pages/terms/terms" hover-class="legal-link-hover">用户协议 ›</navigator>
+  </view>
+</view>

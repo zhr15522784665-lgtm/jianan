@@ -1,0 +1,69 @@
+<!-- pages/meditation/meditation.wxml -->
+<wxs module="m1">
+function pad(n){ return n < 10 ? '0' + n : '' + n; }
+function fmt(s){
+  s = s < 0 ? 0 : s;
+  var m = Math.floor(s / 60);
+  var ss = s % 60;
+  return pad(m) + ':' + pad(ss);
+}
+module.exports = { fmt: fmt };
+</wxs>
+
+<!-- 列表 -->
+<view class="container med" wx:if="{{view === 'list'}}">
+  <view class="med-head">
+    <view class="med-title">🧘 冥想引导</view>
+    <view class="med-sub">选一段，闭上眼睛，剩下的交给我。</view>
+  </view>
+
+  <view
+    class="med-card"
+    wx:for="{{sessions}}" wx:key="id"
+    data-id="{{item.id}}" bindtap="choose" hover-class="med-card-hover"
+  >
+    <view class="med-card-icon">{{item.icon}}</view>
+    <view class="med-card-body">
+      <view class="med-card-title">{{item.title}} · {{item.minutes}} 分钟</view>
+      <view class="med-card-desc">{{item.desc}}</view>
+    </view>
+    <view class="med-card-arrow">›</view>
+  </view>
+
+  <view class="med-foot">引导语会随进度自然更替，你也可以随时暂停。</view>
+</view>
+
+<!-- 播放 -->
+<view class="container med-play" wx:else>
+  <view class="mp-title">{{current.icon}} {{current.title}}</view>
+
+  <view class="ring-wrap">
+    <svg class="ring" viewBox="0 0 280 280">
+      <circle cx="140" cy="140" r="120" class="ring-bg" />
+      <circle cx="140" cy="140" r="120" class="ring-fg"
+        stroke-dasharray="{{ringC}}" stroke-dashoffset="{{ringOffset}}" />
+    </svg>
+    <view class="ring-center">
+      <view class="ring-time">{{m1.fmt(remaining)}}</view>
+      <view class="ring-hint">{{finished ? '已完成' : (running ? '进行中' : '已暂停')}}</view>
+    </view>
+  </view>
+
+  <view class="guidance">{{stepText}}</view>
+
+  <view class="ctrl" wx:if="{{!finished}}">
+    <view class="ctrl-btn ghost" bindtap="backToList">退出</view>
+    <view class="ctrl-btn primary {{running ? 'running' : ''}}" bindtap="toggleRun">
+      {{running ? '暂停' : '开始'}}
+    </view>
+  </view>
+
+  <view class="ctrl" wx:else>
+    <view class="ctrl-btn ghost" bindtap="backToList">返回</view>
+    <view class="ctrl-btn primary" bindtap="restart">再来一次</view>
+  </view>
+
+  <view class="mp-foot" wx:if="{{finished}}">做得很好。哪怕只安静了几分钟，也是对自己的照顾。🌿</view>
+
+  <view class="mp-back" wx:if="{{finished}}" bindtap="toMindspace">完成，回去看看 ›</view>
+</view>

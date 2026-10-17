@@ -1,0 +1,85 @@
+<!-- pages/mood/mood.wxml -->
+<view class="container mood">
+  <view class="mood-head">
+    <view class="mood-title">🌤️ 情绪打卡</view>
+    <view class="mood-sub">记下此刻的感受，不用评判，只是看见。</view>
+  </view>
+
+  <!-- 今日一句 -->
+  <view class="prompt-card">
+    <view class="prompt-label">今日一句</view>
+    <view class="prompt-text">{{todayPrompt}}</view>
+  </view>
+
+  <!-- 近 7 天 -->
+  <view class="week">
+    <view class="week-cell" wx:for="{{week}}" wx:key="label">
+      <view class="week-emoji {{item.emoji ? '' : 'empty'}}">{{item.emoji || '·'}}</view>
+      <view class="week-label">{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 近 14 天趋势 -->
+  <view class="trend">
+    <view class="trend-title">近 14 天</view>
+    <view class="trend-bars">
+      <view class="trend-col" wx:for="{{trendBars}}" wx:key="date">
+        <view class="trend-bar-wrap">
+          <view class="trend-bar {{item.filled ? 'on' : ''}}" style="height: {{item.h}}%;"></view>
+        </view>
+        <view class="trend-d">{{item.date}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 当月心情日历 -->
+  <view class="cal">
+    <view class="cal-title">{{calMonth}} 心情日历</view>
+    <view class="cal-week">
+      <text class="cal-wd" wx:for="{{['日','一','二','三','四','五','六']}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="cal-grid">
+      <view class="cal-cell {{item.blank ? 'blank' : ''}}" wx:for="{{calendar}}" wx:key="index">
+        <block wx:if="{{!item.blank}}">
+          <text class="cal-emoji">{{item.emoji || ''}}</text>
+          <text class="cal-day">{{item.day}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 选择心情 -->
+  <view class="choose-tip">今天感觉怎么样？</view>
+  <view class="mood-grid">
+    <view
+      class="mood-opt {{selected === item.key ? 'on' : ''}}"
+      wx:for="{{moods}}" wx:key="key"
+      data-key="{{item.key}}" bindtap="selectMood"
+    >
+      <view class="mood-opt-emoji">{{item.emoji}}</view>
+      <view class="mood-opt-key">{{item.key}}</view>
+    </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="note-wrap">
+    <textarea
+      class="note"
+      value="{{note}}"
+      bindinput="onNote"
+      placeholder="想多说一点吗？（可选，仅存本机）"
+      maxlength="200"
+      auto-height
+    />
+  </view>
+
+  <view class="mood-done" wx:if="{{saved}}">🌿 已记录，谢谢你今天照顾自己</view>
+
+  <view class="save-btn {{saved ? 'saved' : ''}}" bindtap="save">
+    {{saved ? '✓ 已保存' : '保存今天的心情'}}
+  </view>
+
+  <view class="mood-foot">记录只保存在你的设备里，不会上传，也不会用于训练。</view>
+
+  <view class="mood-link" bindtap="goThreegood">写下今天的「三件好事」 ›</view>
+</view>

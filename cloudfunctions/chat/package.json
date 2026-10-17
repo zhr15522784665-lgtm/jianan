@@ -1,0 +1,27 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "见岸 AI 对话云函数：DeepSeek 服务端代理、规则安全分诊与 OCD 专精路由",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "4.0.2"
+  },
+  "scripts": {
+    "test": "node --test safety-router.test.js emotion.test.js model-output.test.js chat-contract.test.js ocd-knowledge.test.js ocd-router.test.js ../ocd/ocd-contract.test.js ../../miniprogram/pages/chat/chat-safety.test.js ../../miniprogram/pages/chat/chat-emotion.test.js ../../miniprogram/pages/ocd-assess/scoring.test.js ../../miniprogram/pages/exposure/exposure-logic.test.js ../../miniprogram/pages/ocd-log/stats.test.js",
+    "test:safety": "node --test safety-router.test.js",
+    "test:frontend": "node --test ../../miniprogram/pages/chat/chat-safety.test.js ../../miniprogram/pages/chat/chat-emotion.test.js"
+  },
+  "license": "MIT",
+  "keywords": [
+    "wechat-miniprogram",
+    "cloudbase",
+    "ocd",
+    "deepseek"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB_OWNER/jianan.git",
+    "directory": "cloudfunctions/chat"
+  },
+  "private": true
+}

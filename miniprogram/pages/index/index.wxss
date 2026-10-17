@@ -1,0 +1,257 @@
+/* pages/index/index.wxss */
+.home {
+  padding-top: 64rpx;
+  padding-bottom: 64rpx;
+  animation: fadeUp 0.45s ease both;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+.brand {
+  font-size: 60rpx;
+  font-weight: 800;
+  color: var(--teal);
+  letter-spacing: 4rpx;
+}
+.slogan {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 12rpx;
+  color: var(--ink);
+}
+.streak {
+  display: inline-block;
+  margin-top: 20rpx;
+  padding: 10rpx 28rpx;
+  border-radius: 30rpx;
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+  font-size: 23rpx;
+  font-weight: 600;
+  animation: fadeUp 0.5s ease both;
+}
+
+.section-title {
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  margin: 48rpx 4rpx 20rpx;
+}
+
+/* ===== 主线：此刻 ===== */
+.now-card {
+  background: linear-gradient(135deg, #e6f4f1, #f3f7f6);
+  border: 2rpx solid var(--line);
+  border-radius: 28rpx;
+  padding: 32rpx 28rpx;
+  animation: fadeUp 0.5s ease both;
+}
+.now-q {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--ink);
+}
+.now-opts {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+.now-opt {
+  flex: 1;
+  background: #fff;
+  border: 2rpx solid transparent;
+  border-radius: 20rpx;
+  padding: 20rpx 0;
+  text-align: center;
+}
+.now-opt.on {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+}
+.now-opt:active {
+  transform: scale(0.96);
+}
+.now-e {
+  display: block;
+  font-size: 44rpx;
+}
+.now-t {
+  display: block;
+  font-size: 24rpx;
+  color: var(--ink-soft);
+  margin-top: 6rpx;
+}
+.now-opt.on .now-t {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.now-suggest {
+  margin-top: 24rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.suggest-text {
+  flex: 1;
+  font-size: 26rpx;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.suggest-btn {
+  flex: none;
+  background: var(--teal);
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 600;
+  padding: 14rpx 24rpx;
+  border-radius: 28rpx;
+}
+.suggest-btn:active {
+  opacity: 0.7;
+}
+
+.now-foot {
+  margin-top: 18rpx;
+  font-size: 22rpx;
+  color: var(--ink-soft);
+}
+.now-link {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+/* ===== 陪你聊聊 ===== */
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+}
+.persona-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx 12rpx;
+  text-align: center;
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.06);
+}
+.persona-hover {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+.persona-avatar {
+  font-size: 56rpx;
+}
+.persona-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-top: 8rpx;
+}
+.persona-tag {
+  font-size: 20rpx;
+  color: var(--ink-soft);
+  margin-top: 6rpx;
+  line-height: 1.3;
+}
+
+/* ===== 工具：三宫格 ===== */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+}
+.tool-btn {
+  background: #fff;
+  border-radius: 22rpx;
+  padding: 26rpx 8rpx;
+  text-align: center;
+  box-shadow: 0 6rpx 20rpx rgba(14, 148, 136, 0.06);
+}
+.tool-btn:active {
+  transform: scale(0.96);
+  background: var(--teal-soft);
+}
+.tool-e {
+  display: block;
+  font-size: 44rpx;
+}
+.tool-t {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 8rpx;
+}
+.tool-d {
+  display: block;
+  font-size: 20rpx;
+  color: var(--ink-soft);
+  margin-top: 4rpx;
+}
+
+/* ===== 值得一读 ===== */
+.read-list {
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 6rpx 20rpx rgba(14, 148, 136, 0.06);
+}
+.read-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 24rpx;
+  border-bottom: 2rpx solid var(--line);
+}
+.read-item:last-child {
+  border-bottom: none;
+}
+.read-item:active {
+  background: var(--teal-soft);
+}
+.read-title {
+  font-size: 28rpx;
+  color: var(--ink);
+  flex: 1;
+}
+.read-arrow {
+  font-size: 34rpx;
+  color: var(--ink-soft);
+  margin-left: 16rpx;
+}
+
+/* ===== 危机入口（常驻） ===== */
+.sos {
+  margin-top: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 28rpx;
+  border-radius: 24rpx;
+  background: #fdecec;
+  border: 2rpx solid #f3b5b5;
+}
+.sos:active {
+  opacity: 0.7;
+}
+.sos-e {
+  font-size: 32rpx;
+}
+.sos-t {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.disclaimer {
+  margin-top: 48rpx;
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  text-align: center;
+  padding: 0 12rpx;
+}

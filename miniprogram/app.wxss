@@ -1,0 +1,83 @@
+/* app.wxss —— 见岸全局主题 */
+page {
+  --teal: #0e9488;
+  --teal-dark: #0b7d73;
+  --teal-soft: #e6f4f1;
+  --bg: #f3f7f6;
+  --ink: #1f2d2b;
+  --ink-soft: #5b6b68;
+  --line: #e3ecea;
+  --danger: #e23b3b;
+  --danger-soft: #fdeaea;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+.container {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 0 32rpx;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  border: none;
+}
+.btn-primary {
+  background: var(--teal);
+  color: #fff;
+}
+.btn-ghost {
+  background: #fff;
+  color: var(--teal);
+  border: 2rpx solid var(--teal);
+}
+.btn::after {
+  border: none;
+}
+
+.card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.06);
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+.center {
+  text-align: center;
+}
+.icp-footer {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  padding: 28rpx 0 48rpx;
+}
+.icp-footer .link {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+/* 全局进入动画：所有页面淡入上移，衔接更顺（页面样式隔离，keyframes 必须放全局才跨页可用） */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

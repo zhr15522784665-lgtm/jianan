@@ -1,0 +1,26 @@
+<!-- pages/article/article.wxml -->
+<view class="container article" wx:if="{{article}}">
+  <view class="head">
+    <view class="cat">{{article.cat}}</view>
+    <view class="title">{{article.title}}</view>
+    <view class="meta">阅读约 {{article.read}} 分钟 · 更新 {{article.updated}}</view>
+    <view class="summary">{{article.summary}}</view>
+  </view>
+
+  <view class="body">
+    <block wx:for="{{article.sections}}" wx:key="index" wx:for-item="s">
+      <view wx:if="{{s.t === 'h'}}" class="sec-h">{{s.c}}</view>
+      <view wx:elif="{{s.t === 'p'}}" class="sec-p">{{s.c}}</view>
+      <view wx:elif="{{s.t === 'quote'}}" class="sec-quote">{{s.c}}</view>
+      <view wx:elif="{{s.t === 'list'}}" class="sec-list">
+        <view class="sec-li" wx:for="{{s.c}}" wx:key="*this" wx:for-item="li">· {{li}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="disclaimer">
+    本文为心理健康科普，仅供了解与参考，不构成任何诊断或治疗建议。若你正被情绪困扰，或已有伤害自己的念头，请拨打全国心理援助热线 12356（24 小时）。
+  </view>
+  <view class="wall-link" bindtap="leaveOnWall">🌊 读完想说点什么？记一句给此刻的自己 ›</view>
+  <view class="hotline-btn" bindtap="goHotline">📞 需要帮助？拨打 12356</view>
+</view>

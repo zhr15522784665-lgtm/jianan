@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="title">症状日志</view>
+  <view class="card">
+    <view class="types"><button wx:for="{{types}}" wx:key="id" data-type="{{item.id}}" bindtap="chooseType">{{item.name}}</button></view>
+    <input placeholder="触发情境（必填）" value="{{trigger}}" data-field="trigger" bindinput="onField"/>
+    <textarea placeholder="念头" value="{{thought}}" data-field="thought" bindinput="onField"/>
+    <textarea placeholder="实际行为或回避" value="{{behavior}}" data-field="behavior" bindinput="onField"/>
+    <view>SUDS 前 {{sudsBefore}} / 100</view><slider min="0" max="100" value="{{sudsBefore}}" data-field="sudsBefore" bindchange="onSuds" activeColor="#0e9488"/>
+    <view>SUDS 后 {{sudsAfter}} / 100</view><slider min="0" max="100" value="{{sudsAfter}}" data-field="sudsAfter" bindchange="onSuds" activeColor="#0e9488"/>
+    <input type="number" placeholder="耗时（分钟）" value="{{durationMin}}" data-field="durationMin" bindinput="onField"/>
+    <checkbox-group bindchange="toggleResisted"><label><checkbox value="done" checked="{{resisted}}"/>这次忍住了仪式</label></checkbox-group>
+    <textarea placeholder="备注（可选）" value="{{note}}" data-field="note" bindinput="onField"/>
+    <checkbox-group class="consent-group" bindchange="checkCloudConsent"><label class="consent"><checkbox value="yes" checked="{{cloudConsent}}"/>我同意将这条日志作为敏感健康信息保存到云端</label></checkbox-group>
+    <button bindtap="save" loading="{{loading}}">保存记录</button>
+  </view>
+  <view class="stats" wx:if="{{stats}}">本周 {{stats.count}} 条 · 平均 SUDS 下降 {{stats.averageSudsDrop}} · 抵抗率 {{stats.resistanceRate * 100}}%<view wx:if="{{stats.topTriggers && stats.topTriggers.length}}">常见触发：<text wx:for="{{stats.topTriggers}}" wx:key="trigger">{{item.trigger}}({{item.count}}) </text></view></view>
+  <view class="filters"><button data-filter="all" bindtap="chooseFilter">全部</button><button data-filter="resisted" bindtap="chooseFilter">忍住</button><button data-filter="notResisted" bindtap="chooseFilter">未忍住</button></view>
+  <block wx:for="{{items}}" wx:key="_id"><view class="log" wx:if="{{filter === 'all' || (filter === 'resisted' && item.resisted) || (filter === 'notResisted' && !item.resisted)}}"><view class="log-head">{{item.trigger}} · {{item.resisted ? '忍住了' : '未忍住'}}</view><view class="log-body">SUDS {{item.sudsBefore}} → {{item.sudsAfter}} · {{item.durationMin}}分钟</view><view class="log-note">{{item.thought}}</view></view></block>
+  <button wx:if="{{hasMore}}" bindtap="loadMore" loading="{{loading}}">加载更早记录</button>
+  <view class="empty" wx:if="{{!items.length}}">还没有记录，完成一次小练习后回来写下它。</view>
+  <view class="error" wx:if="{{error}}" bindtap="retry">{{error}}（点击重试）</view>
+</view>

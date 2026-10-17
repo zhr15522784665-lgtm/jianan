@@ -1,0 +1,7 @@
+<!-- pages/welcome/welcome.wxml -->
+<view class="welcome">
+  <view class="w-logo">🏝️</view>
+  <view class="w-name">见岸</view>
+  <view class="w-slogan">你的心灵避风港</view>
+  <view class="w-enter" bindtap="enter" hover-class="w-enter-hover">进入 ›</view>
+</view>

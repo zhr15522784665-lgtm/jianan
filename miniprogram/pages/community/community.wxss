@@ -1,0 +1,246 @@
+/* pages/community/community.wxss */
+.container.community {
+  padding: 24rpx 28rpx 60rpx;
+  background: #f3f7f6;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.hero {
+  padding: 16rpx 4rpx 20rpx;
+}
+.hero-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #143b38;
+}
+.hero-sub {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: #5b6b68;
+}
+
+.block {
+  margin-top: 28rpx;
+}
+.block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18rpx;
+}
+.block-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #143b38;
+}
+.wall-count {
+  display: inline-block;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #0e9488;
+  background: #e6f5f2;
+  border-radius: 999rpx;
+  padding: 2rpx 14rpx;
+  margin-left: 8rpx;
+  vertical-align: middle;
+}
+
+/* 经历墙情绪筛选 */
+.filter-row {
+  white-space: nowrap;
+  margin-bottom: 18rpx;
+}
+.filter-chip {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #5b6b68;
+  padding: 8rpx 24rpx;
+  margin-right: 14rpx;
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 999rpx;
+}
+.filter-chip.on {
+  color: #fff;
+  background: #0e9488;
+  border-color: #0e9488;
+}
+.block-action {
+  font-size: 26rpx;
+  color: #0e9488;
+  padding: 6rpx 18rpx;
+  border: 2rpx solid #cdeae5;
+  border-radius: 999rpx;
+}
+
+/* 经历墙：横向滚动卡片 */
+.wall-scroll {
+  white-space: nowrap;
+  width: 100%;
+}
+.wall-card {
+  display: inline-block;
+  vertical-align: top;
+  width: 460rpx;
+  margin-right: 20rpx;
+  padding: 26rpx 26rpx 22rpx;
+  background: #ffffff;
+  border-radius: 24rpx;
+  box-shadow: 0 6rpx 20rpx rgba(20, 59, 56, 0.06);
+  white-space: normal;
+  box-sizing: border-box;
+}
+.wall-mood {
+  display: inline-block;
+  font-size: 22rpx;
+  color: #0e9488;
+  background: #e6f5f2;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  margin-bottom: 16rpx;
+}
+.wall-text {
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #2c3e3b;
+}
+.wall-foot {
+  margin-top: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wall-from {
+  font-size: 20rpx;
+  color: #9aa8a4;
+}
+.wall-del {
+  font-size: 22rpx;
+  color: #9aa8a4;
+  text-align: right;
+}
+.wall-hint {
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: #9aa8a4;
+}
+
+/* 文章卡 */
+.article-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 28rpx 28rpx 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 6rpx 20rpx rgba(20, 59, 56, 0.06);
+}
+.article-hover {
+  transform: scale(0.99);
+}
+.article-cat {
+  display: inline-block;
+  font-size: 22rpx;
+  color: #0e9488;
+  background: #e6f5f2;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+}
+.article-title {
+  margin-top: 14rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #143b38;
+  line-height: 1.4;
+}
+.article-summary {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #5b6b68;
+  line-height: 1.6;
+}
+.article-meta {
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: #9aa8a4;
+}
+
+.disclaimer {
+  margin-top: 36rpx;
+  font-size: 22rpx;
+  color: #9aa8a4;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* 留言浮层 */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 59, 56, 0.4);
+  display: flex;
+  align-items: flex-end;
+  z-index: 50;
+}
+.sheet {
+  width: 100%;
+  background: #fff;
+  border-radius: 28rpx 28rpx 0 0;
+  padding: 36rpx 36rpx 48rpx;
+  box-sizing: border-box;
+}
+.sheet-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #143b38;
+  margin-bottom: 24rpx;
+}
+.mood-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+.mood-tag {
+  font-size: 24rpx;
+  color: #5b6b68;
+  padding: 10rpx 20rpx;
+  border-radius: 999rpx;
+  background: #f1f5f4;
+  border: 2rpx solid transparent;
+}
+.mood-tag.on {
+  color: #0e9488;
+  background: #e6f5f2;
+  border-color: #0e9488;
+}
+.sheet-input {
+  width: 100%;
+  min-height: 160rpx;
+  background: #f6f9f8;
+  border-radius: 18rpx;
+  padding: 22rpx;
+  font-size: 28rpx;
+  color: #2c3e3b;
+  box-sizing: border-box;
+}
+.sheet-btns {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 28rpx;
+}
+.sheet-cancel,
+.sheet-ok {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 0;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+}
+.sheet-cancel {
+  background: #f1f5f4;
+  color: #5b6b68;
+}
+.sheet-ok {
+  background: #0e9488;
+  color: #fff;
+}

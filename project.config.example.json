@@ -1,0 +1,32 @@
+{
+  "description": "见岸 · 心理自助工具（微信小程序）",
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "compileType": "miniprogram",
+  "libVersion": "latest",
+  "appid": "wxYOUR_APPID_HERE",
+  "projectname": "jianan-miniprogram",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "minifyWXSS": true,
+    "minifyWXML": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": []
+    }
+  }
+}

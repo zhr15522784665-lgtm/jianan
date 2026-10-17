@@ -1,0 +1,51 @@
+<!-- pages/safety/safety.wxml -->
+<view class="container sf">
+  <view class="sf-head">
+    <view class="sf-title">我的安全计划</view>
+    <view class="sf-sub">趁现在还平静，先把应对写下来。难的时候，照着做就好。</view>
+  </view>
+
+  <!-- 0. 紧急热线（常驻，随时可拨） -->
+  <view class="sf-hot" bindtap="callHotline">
+    <text class="sf-hot-e">☎️</text>
+    <text class="sf-hot-t">紧急情况立即拨打 全国心理援助热线 12356</text>
+    <text class="sf-hot-c">拨打</text>
+  </view>
+
+  <!-- 1. 预警信号 -->
+  <view class="sf-block">
+    <view class="sf-b-title">① 我状态变差的信号</view>
+    <view class="sf-b-sub">哪些念头、身体或行为出现时，说明我需要警惕？</view>
+    <textarea class="sf-area" value="{{signs}}" bindinput="onSigns" placeholder="例如：整夜睡不着、不想回消息、觉得没意思…" maxlength="300" auto-height />
+  </view>
+
+  <!-- 2. 自我应对 -->
+  <view class="sf-block">
+    <view class="sf-b-title">② 我可以先为自己做的</view>
+    <view class="sf-b-sub">不需要别人，自己就能做、能让你好受一点的小事。</view>
+    <textarea class="sf-area" value="{{cope}}" bindinput="onCope" placeholder="例如：听一首安静的歌、洗个热水澡、出去走十分钟…" maxlength="300" auto-height />
+  </view>
+
+  <!-- 3. 信任联系人 -->
+  <view class="sf-block">
+    <view class="sf-b-title">③ 可以找的人</view>
+    <view class="sf-b-sub">写下你信任的人，状态糟糕时直接打给他们。</view>
+    <view class="sf-contact" wx:for="{{contacts}}" wx:key="index">
+      <input class="sf-c-name" value="{{item.name}}" data-i="{{index}}" bindinput="onCName" placeholder="称呼" maxlength="20" />
+      <input class="sf-c-phone" value="{{item.phone}}" data-i="{{index}}" bindinput="onCPhone" placeholder="电话" type="number" maxlength="20" />
+      <text class="sf-c-call" wx:if="{{item.phone}}" data-tel="{{item.phone}}" bindtap="callContact">拨打</text>
+      <text class="sf-c-del" bindtap="delContact" data-i="{{index}}">删</text>
+    </view>
+    <view class="sf-add" wx:if="{{contacts.length < 3}}" bindtap="addContact">＋ 再加一位</view>
+  </view>
+
+  <!-- 4. 备注 -->
+  <view class="sf-block">
+    <view class="sf-b-title">④ 想对自己说的话</view>
+    <textarea class="sf-area" value="{{note}}" bindinput="onNote" placeholder="留给低谷时的自己一句话，比如：这阵子会过去的，你撑过很多次了。" maxlength="200" auto-height />
+  </view>
+
+  <view class="sf-saved" wx:if="{{saved}}">已保存，就在你手机里</view>
+  <view class="sf-save" bindtap="save">保存安全计划</view>
+  <view class="sf-foot">本计划仅保存在你的设备，不上传。它不能替代专业帮助，危急时请拨 12356。</view>
+</view>

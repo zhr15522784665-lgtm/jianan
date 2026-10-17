@@ -1,0 +1,197 @@
+/* pages/hotlines/hotlines.wxss */
+.hot-page {
+  padding: 24rpx 24rpx 60rpx;
+}
+
+/* 顶部提示 */
+.top-tip {
+  background: var(--danger-soft);
+  border: 2rpx solid #f3c4c0;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+.top-tip-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--danger);
+  margin-bottom: 10rpx;
+}
+.top-tip-text {
+  font-size: 25rpx;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* 搜索 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 18rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 16rpx;
+}
+.search-icon {
+  font-size: 26rpx;
+  margin-right: 12rpx;
+}
+.search-input {
+  flex: 1;
+  font-size: 27rpx;
+  color: var(--ink);
+}
+.search-clear {
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  padding: 0 8rpx;
+}
+
+/* 省份快捷筛选 */
+.prov-bar {
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+}
+.prov-chip {
+  display: inline-block;
+  padding: 10rpx 24rpx;
+  margin-right: 12rpx;
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: var(--ink-soft);
+}
+.prov-chip.on {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+}
+
+/* 分区标题 */
+.sec-title {
+  font-size: 27rpx;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 26rpx 0 14rpx;
+}
+.sec-sub {
+  display: block;
+  font-size: 22rpx;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 6rpx;
+}
+
+/* 热线条目 */
+.nation-card,
+.prov-list {
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.hot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx;
+  border-bottom: 2rpx solid var(--line);
+}
+.hot:last-child {
+  border-bottom: none;
+}
+.hot:active {
+  background: var(--teal-soft);
+}
+.hot-main {
+  flex: 1;
+  min-width: 0;
+  padding-right: 16rpx;
+}
+.hot-name {
+  font-size: 27rpx;
+  color: var(--ink);
+  font-weight: 600;
+}
+.hot-note {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  margin-top: 6rpx;
+  line-height: 1.5;
+}
+.hot-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.hot-tel {
+  font-size: 27rpx;
+  font-weight: 700;
+  color: var(--danger);
+  letter-spacing: 1rpx;
+}
+.hot-call {
+  font-size: 21rpx;
+  color: #fff;
+  background: var(--danger);
+  padding: 4rpx 18rpx;
+  border-radius: 20rpx;
+  margin-top: 8rpx;
+}
+
+/* 省份标签 */
+.prov-tag {
+  font-weight: 700;
+  color: var(--teal-dark);
+}
+.h24-tag {
+  font-size: 19rpx;
+  color: var(--ink-soft);
+  background: var(--bg);
+  padding: 2rpx 12rpx;
+  border-radius: 16rpx;
+  margin-left: 12rpx;
+  font-weight: 400;
+}
+.h24-tag.on {
+  color: var(--teal-dark);
+  background: var(--teal-soft);
+}
+
+/* 空态 */
+.empty {
+  text-align: center;
+  padding: 80rpx 0;
+}
+.empty-emoji {
+  font-size: 60rpx;
+}
+.empty-text {
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  margin: 18rpx 0 24rpx;
+}
+.empty-btn {
+  display: inline-block;
+  padding: 14rpx 40rpx;
+  background: var(--teal);
+  color: #fff;
+  border-radius: 30rpx;
+  font-size: 25rpx;
+}
+
+/* 页脚说明 */
+.foot-tip {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-top: 26rpx;
+}
+.foot-tip.danger {
+  color: var(--danger);
+  font-weight: 600;
+  margin-top: 12rpx;
+}

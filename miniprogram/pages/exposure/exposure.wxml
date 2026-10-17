@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="title">暴露阶梯</view>
+  <view class="hint">从能承受的一小步开始。练习中不检查、不中和、不寻求保证。</view>
+  <view class="card add">
+    <input placeholder="阶梯标题，如：出门后不回头检查" data-field="title" bindinput="onField"/>
+    <textarea placeholder="情境描述（可选）" data-field="description" bindinput="onField"/>
+    <view>难度 {{level}} / 100 · 目标 SUDS {{target}}</view>
+    <slider min="0" max="100" value="{{level}}" bindchange="onLevel" activeColor="#0e9488"/>
+    <slider min="0" max="100" value="{{target}}" bindchange="onTarget" activeColor="#0e9488"/>
+    <checkbox-group class="consent-group" bindchange="checkCloudConsent"><label class="consent"><checkbox value="yes" checked="{{cloudConsent}}"/>我同意将阶梯和练习记录作为敏感健康信息保存到云端</label></checkbox-group>
+    <button bindtap="addStep" loading="{{saving}}">新增阶梯</button>
+  </view>
+  <view wx:if="{{stage === 'choose'}}">
+    <view class="section">选择一个阶梯开始练习</view>
+    <view class="step" wx:for="{{steps}}" wx:key="_id" data-id="{{item._id}}" bindtap="selectStep">
+      <view class="step-title">{{item.title}}</view>
+      <view class="step-meta">难度 {{item.level}} · {{item.status === 'completed' ? '已完成' : item.status === 'in_progress' ? '进行中' : '未开始'}} · 最近 SUDS {{item.lastSuds == null ? '—' : item.lastSuds}}</view>
+    </view>
+  </view>
+  <view wx:elif="{{stage === 'before'}}" class="card">
+    <view class="section">练习前：{{selected.title}}</view><view>SUDS {{before}} / 100</view>
+    <slider min="0" max="100" value="{{before}}" bindchange="onBefore" activeColor="#0e9488"/>
+    <button bindtap="begin">开始两分钟练习</button>
+  </view>
+  <view wx:elif="{{stage === 'running'}}" class="card running">
+    <view class="timer">{{remaining}} 秒</view>
+    <view>把注意力带回正在做的事，允许不确定感存在。</view>
+    <button bindtap="togglePause">{{paused ? '继续计时' : '暂停计时'}}</button><button bindtap="finish">结束练习并记录</button>
+  </view>
+  <view wx:elif="{{stage === 'after'}}" class="card">
+    <view class="section">练习后</view><view>SUDS {{after}} / 100</view>
+    <slider min="0" max="100" value="{{after}}" bindchange="onAfter" activeColor="#0e9488"/>
+    <checkbox-group bindchange="toggleResisted"><label><checkbox value="done" checked="{{resisted}}"/>我完成了反应阻止</label></checkbox-group>
+    <button bindtap="savePractice" loading="{{saving}}">保存练习</button>
+  </view>
+  <view wx:elif="{{stage === 'done'}}" class="card"><view class="section">已记录这次练习</view><view>每一次允许不确定，都是一次新的安全学习。</view><button bindtap="reset">选择下一步</button></view>
+  <view class="history" wx:if="{{history.length}}"><view class="section">这个阶梯的历史</view><view wx:for="{{history}}" wx:key="at" class="history-row">{{item.at}}：{{item.before}} → {{item.after}}</view></view>
+  <view class="error" wx:if="{{error}}">{{error}}</view>
+</view>

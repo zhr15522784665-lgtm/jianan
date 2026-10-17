@@ -1,0 +1,12 @@
+node_modules/
+package-lock.json
+docs/FILE_LIST.md
+# 原始安全规则与量表条目逐字保留，由 SHA-256 完整性检查守护。
+cloudfunctions/chat/safety-router.js
+miniprogram/pages/ocd-assess/assess-items.js
+# WXML 使用微信模板语法，不交给通用 HTML 格式化器。
+*.wxml
+.env*
+cloudbaserc.json
+project.config.json
+project.private.config.json

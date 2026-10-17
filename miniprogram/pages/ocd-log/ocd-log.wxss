@@ -1,0 +1,62 @@
+.page {
+  padding: 32rpx 28rpx;
+  color: #203330;
+}
+.title {
+  font-size: 44rpx;
+  font-weight: 700;
+}
+.card,
+.log {
+  background: #fff;
+  border-radius: 22rpx;
+  padding: 24rpx;
+  margin: 18rpx 0;
+}
+.card input,
+.card textarea {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 12rpx 0;
+  padding: 18rpx;
+  background: #f4f8f7;
+  border-radius: 14rpx;
+}
+.card textarea {
+  height: 90rpx;
+}
+.types,
+.filters {
+  display: flex;
+  gap: 12rpx;
+  overflow-x: auto;
+}
+.types button,
+.filters button {
+  font-size: 23rpx;
+  white-space: nowrap;
+}
+.stats {
+  background: #e5f5f1;
+  padding: 22rpx;
+  border-radius: 18rpx;
+  color: #0e7067;
+}
+.log-head {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+.log-body,
+.log-note {
+  font-size: 23rpx;
+  color: #687d78;
+  margin-top: 8rpx;
+}
+.empty,
+.error {
+  margin: 28rpx 0;
+  color: #6b817d;
+}
+.error {
+  color: #b4442f;
+}

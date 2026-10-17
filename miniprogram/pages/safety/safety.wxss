@@ -1,0 +1,149 @@
+/* pages/safety/safety.wxss */
+.sf {
+  padding: 36rpx 0 60rpx;
+}
+
+.sf-head {
+  text-align: center;
+  margin-bottom: 28rpx;
+  animation: fadeUp 0.4s ease both;
+}
+.sf-title {
+  font-size: 46rpx;
+  font-weight: 800;
+  color: var(--teal);
+}
+.sf-sub {
+  font-size: 25rpx;
+  color: var(--ink-soft);
+  margin-top: 10rpx;
+  line-height: 1.6;
+}
+
+.sf-hot {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  background: var(--danger-soft);
+  border: 2rpx solid #f3b5b5;
+  border-radius: 20rpx;
+  padding: 22rpx 24rpx;
+  margin-bottom: 28rpx;
+}
+.sf-hot:active {
+  opacity: 0.7;
+}
+.sf-hot-e {
+  font-size: 32rpx;
+}
+.sf-hot-t {
+  flex: 1;
+  font-size: 25rpx;
+  font-weight: 600;
+  color: var(--danger);
+  line-height: 1.5;
+}
+.sf-hot-c {
+  flex: none;
+  background: var(--danger);
+  color: #fff;
+  font-size: 22rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+}
+
+.sf-block {
+  background: #fff;
+  border-radius: 22rpx;
+  padding: 28rpx 24rpx;
+  margin-bottom: 22rpx;
+  box-shadow: 0 4rpx 16rpx rgba(14, 148, 136, 0.05);
+  animation: fadeUp 0.5s ease both;
+}
+.sf-b-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sf-b-sub {
+  font-size: 23rpx;
+  color: var(--ink-soft);
+  margin: 8rpx 0 16rpx;
+  line-height: 1.6;
+}
+.sf-area {
+  width: 100%;
+  min-height: 120rpx;
+  font-size: 27rpx;
+  line-height: 1.6;
+  background: var(--bg);
+  border-radius: 14rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+}
+
+.sf-contact {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 14rpx;
+}
+.sf-c-name {
+  flex: 1;
+  height: 72rpx;
+  background: var(--bg);
+  border-radius: 12rpx;
+  padding: 0 16rpx;
+  font-size: 26rpx;
+}
+.sf-c-phone {
+  flex: 1.2;
+  height: 72rpx;
+  background: var(--bg);
+  border-radius: 12rpx;
+  padding: 0 16rpx;
+  font-size: 26rpx;
+}
+.sf-c-call {
+  flex: none;
+  color: var(--teal);
+  font-size: 24rpx;
+  font-weight: 600;
+}
+.sf-c-del {
+  flex: none;
+  color: var(--ink-soft);
+  font-size: 22rpx;
+}
+.sf-add {
+  text-align: center;
+  color: var(--teal);
+  font-size: 25rpx;
+  padding: 10rpx;
+}
+
+.sf-saved {
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--teal-dark);
+  margin-top: 4rpx;
+}
+.sf-save {
+  margin-top: 16rpx;
+  height: 92rpx;
+  border-radius: 46rpx;
+  background: var(--teal);
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sf-foot {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 24rpx;
+  line-height: 1.7;
+}

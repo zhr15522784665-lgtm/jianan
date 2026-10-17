@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+# 禁止 Git 换行转换改写受保护原文件。
+cloudfunctions/chat/safety-router.js -text
+miniprogram/pages/ocd-assess/assess-items.js -text

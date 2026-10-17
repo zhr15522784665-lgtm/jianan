@@ -1,0 +1,24 @@
+name: 错误报告
+description: 报告可复现的程序问题（请使用虚构数据）
+body:
+  - type: markdown
+    attributes:
+      value: 请勿上传真实对话、健康记录、openid 或密钥；漏洞请遵循 SECURITY.md。
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 使用虚构内容描述操作与触发条件。
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: 预期与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境与已脱敏错误码
+      description: 微信基础库、开发者工具、Node.js 版本，以及相关开关档位。

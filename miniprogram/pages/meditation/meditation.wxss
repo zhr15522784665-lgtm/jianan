@@ -1,0 +1,181 @@
+/* pages/meditation/meditation.wxss */
+.med {
+  padding: 40rpx 0 60rpx;
+}
+.med-head {
+  text-align: center;
+  margin-bottom: 36rpx;
+  animation: fadeUp 0.4s ease both;
+}
+.med-title {
+  font-size: 46rpx;
+  font-weight: 800;
+  color: var(--teal);
+}
+.med-sub {
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  margin-top: 10rpx;
+}
+
+.med-card {
+  display: flex;
+  align-items: center;
+  gap: 22rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx 28rpx;
+  margin-bottom: 22rpx;
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.06);
+  animation: fadeUp 0.5s ease both;
+}
+.med-card-hover {
+  transform: scale(0.98);
+  opacity: 0.92;
+}
+.med-card-icon {
+  font-size: 56rpx;
+}
+.med-card-body {
+  flex: 1;
+}
+.med-card-title {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.med-card-desc {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  margin-top: 8rpx;
+  line-height: 1.5;
+}
+.med-card-arrow {
+  font-size: 44rpx;
+  color: var(--teal);
+}
+
+.med-foot {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 30rpx;
+  line-height: 1.7;
+}
+
+/* 播放页 */
+.med-play {
+  padding: 48rpx 0 60rpx;
+  text-align: center;
+}
+.mp-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 30rpx;
+}
+
+.ring-wrap {
+  position: relative;
+  width: 420rpx;
+  height: 420rpx;
+  margin: 10rpx auto 36rpx;
+}
+.ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.ring-bg {
+  fill: none;
+  stroke: #e3ecea;
+  stroke-width: 16;
+}
+.ring-fg {
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 16;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+.ring-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ring-time {
+  font-size: 72rpx;
+  font-weight: 800;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.ring-hint {
+  font-size: 24rpx;
+  color: var(--ink-soft);
+  margin-top: 6rpx;
+}
+
+.guidance {
+  font-size: 30rpx;
+  color: var(--ink);
+  line-height: 1.8;
+  padding: 0 40rpx;
+  min-height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeUp 0.6s ease both;
+}
+
+.ctrl {
+  display: flex;
+  gap: 24rpx;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+.ctrl-btn {
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 48rpx;
+}
+.ctrl-btn.primary {
+  background: var(--teal);
+  color: #fff;
+}
+.ctrl-btn.primary.running {
+  background: var(--teal-dark);
+}
+.ctrl-btn.ghost {
+  background: #fff;
+  color: var(--teal);
+  border: 2rpx solid var(--teal);
+}
+
+.mp-foot {
+  font-size: 24rpx;
+  color: var(--teal);
+  margin-top: 30rpx;
+  line-height: 1.7;
+  padding: 0 24rpx;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

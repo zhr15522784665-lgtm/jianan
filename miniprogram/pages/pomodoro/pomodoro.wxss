@@ -1,0 +1,287 @@
+/* pages/pomodoro/pomodoro.wxss */
+.pomo {
+  padding: 36rpx 0 60rpx;
+  text-align: center;
+  animation: fadeUp 0.45s ease both;
+}
+
+.pomo-head {
+  margin-bottom: 28rpx;
+}
+.pomo-mode {
+  display: inline-block;
+  font-size: 30rpx;
+  font-weight: 700;
+  padding: 12rpx 32rpx;
+  border-radius: 40rpx;
+}
+.pomo-mode.work {
+  background: #e6f4f1;
+  color: var(--teal);
+}
+.pomo-mode.break {
+  background: #fff3e0;
+  color: #d97706;
+}
+.pomo-task {
+  margin-top: 14rpx;
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  padding: 0 60rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  justify-content: center;
+  margin-bottom: 24rpx;
+}
+.preset {
+  font-size: 24rpx;
+  padding: 14rpx 24rpx;
+  border-radius: 32rpx;
+  background: #fff;
+  color: var(--ink-soft);
+  border: 2rpx solid var(--line);
+}
+.preset.on {
+  background: var(--teal);
+  color: #fff;
+  border-color: var(--teal);
+}
+
+.custom {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin: 0 8rpx 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.06);
+}
+.custom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rpx 0;
+}
+.custom-label {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.step-btn {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: var(--teal-soft);
+  color: var(--teal);
+  font-size: 40rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-val {
+  font-size: 28rpx;
+  min-width: 90rpx;
+}
+
+/* 自定义方式切换 */
+.mode-switch {
+  display: flex;
+  gap: 10rpx;
+  background: var(--teal-soft);
+  border-radius: 30rpx;
+  padding: 6rpx;
+  margin-bottom: 18rpx;
+}
+.ms {
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  padding: 12rpx 0;
+  border-radius: 26rpx;
+  color: var(--teal);
+}
+.ms.on {
+  background: #fff;
+  font-weight: 700;
+  box-shadow: 0 4rpx 12rpx rgba(14, 148, 136, 0.14);
+}
+
+/* 直接输入 */
+.num-input {
+  width: 160rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--teal-soft);
+  border-radius: 16rpx;
+  padding: 14rpx 12rpx;
+}
+.unit {
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  margin-left: 12rpx;
+}
+.input-tip {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  text-align: left;
+  padding-top: 8rpx;
+}
+
+/* 任务名 */
+.task-row {
+  margin: 0 8rpx 20rpx;
+}
+.task-input {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 22rpx 28rpx;
+  font-size: 26rpx;
+  color: var(--ink);
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.06);
+}
+
+/* 开关 */
+.opts {
+  display: flex;
+  gap: 16rpx;
+  justify-content: center;
+  margin-bottom: 28rpx;
+  flex-wrap: wrap;
+}
+.opt {
+  font-size: 24rpx;
+  padding: 14rpx 26rpx;
+  border-radius: 32rpx;
+  background: #fff;
+  color: var(--ink-soft);
+  border: 2rpx solid var(--line);
+}
+.opt.on {
+  background: var(--teal-soft);
+  color: var(--teal);
+  border-color: var(--teal);
+  font-weight: 700;
+}
+
+.ring-wrap {
+  position: relative;
+  width: 420rpx;
+  height: 420rpx;
+  margin: 20rpx auto 30rpx;
+}
+.ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.ring-bg {
+  fill: none;
+  stroke: #e3ecea;
+  stroke-width: 16;
+}
+.ring-fg {
+  fill: none;
+  stroke-width: 16;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+.ring-fg.work {
+  stroke: var(--teal);
+}
+.ring-fg.break {
+  stroke: #f59e0b;
+}
+.ring-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ring-time {
+  font-size: 72rpx;
+  font-weight: 800;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.ring-hint {
+  font-size: 24rpx;
+  color: var(--ink-soft);
+  margin-top: 6rpx;
+}
+
+.ctrl {
+  display: flex;
+  gap: 24rpx;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+.ctrl-btn {
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 48rpx;
+}
+.ctrl-btn.primary {
+  background: var(--teal);
+  color: #fff;
+}
+.ctrl-btn.primary.running {
+  background: var(--teal-dark);
+}
+.ctrl-btn.ghost {
+  background: #fff;
+  color: var(--teal);
+  border: 2rpx solid var(--teal);
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 8rpx 30rpx;
+}
+.stat {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx 0;
+  flex: 1;
+  margin: 0 8rpx;
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.05);
+}
+.stat-num {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: var(--teal);
+}
+.stat-label {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  margin-top: 6rpx;
+}
+
+.pomo-foot {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  padding: 0 12rpx;
+}

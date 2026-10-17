@@ -1,0 +1,115 @@
+<!-- pages/index/index.wxml -->
+<view class="container home">
+  <view class="hero">
+    <view class="brand">🏝️ 见岸</view>
+    <view class="slogan">你不必独自扛着</view>
+    <view class="streak" wx:if="{{streak > 0}}">已连续陪伴你 {{streak}} 天 · 共记录 {{total}} 次</view>
+  </view>
+
+  <!-- 主线：此刻怎么样 → 给一件该做的事 -->
+  <view class="now-card">
+    <view class="now-q">
+      {{moodToday ? '今天你感觉「' + moodToday.mood + '」' : '此刻，你还好吗？'}}
+    </view>
+    <view class="now-opts">
+      <view class="now-opt {{moodToday.mood === '不错' ? 'on' : ''}}" data-m="不错" bindtap="checkNow">
+        <text class="now-e">🙂</text><text class="now-t">还行</text>
+      </view>
+      <view class="now-opt {{moodToday.mood === '一般' ? 'on' : ''}}" data-m="一般" bindtap="checkNow">
+        <text class="now-e">😐</text><text class="now-t">一般</text>
+      </view>
+      <view class="now-opt {{moodToday.mood === '低落' ? 'on' : ''}}" data-m="低落" bindtap="checkNow">
+        <text class="now-e">😔</text><text class="now-t">不太好</text>
+      </view>
+    </view>
+    <view class="now-suggest" wx:if="{{suggest}}">
+      <view class="suggest-text">{{suggest.text}}</view>
+      <view class="suggest-btn" bindtap="doSuggest">{{suggest.btn}} ›</view>
+    </view>
+    <view class="now-foot" wx:if="{{moodToday}}">
+      已记下今天这一笔 · <text class="now-link" bindtap="goMood">详细记录</text>
+    </view>
+  </view>
+
+  <!-- 陪你聊聊 -->
+  <view class="section-title">陪你聊聊</view>
+  <view class="persona-grid">
+    <view
+      class="persona-card"
+      wx:for="{{personas}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="goChat"
+      hover-class="persona-hover"
+    >
+      <view class="persona-avatar">{{item.avatar}}</view>
+      <view class="persona-name">{{item.name}}</view>
+      <view class="persona-tag">{{item.tag}}</view>
+    </view>
+  </view>
+
+  <!-- 情绪调节 -->
+  <view class="section-title">让身体慢下来</view>
+  <view class="tool-grid">
+    <view class="tool-btn" bindtap="goBreathe">
+      <text class="tool-e">🌬️</text><text class="tool-t">呼吸训练</text><text class="tool-d">两分钟平复</text>
+    </view>
+    <view class="tool-btn" bindtap="goGround">
+      <text class="tool-e">🪨</text><text class="tool-t">着陆练习</text><text class="tool-d">回到此刻</text>
+    </view>
+    <view class="tool-btn" bindtap="goMeditation">
+      <text class="tool-e">🧘</text><text class="tool-t">冥想引导</text><text class="tool-d">身体扫描·入睡</text>
+    </view>
+  </view>
+
+  <!-- 日常节律 -->
+  <view class="section-title">把日子过稳</view>
+  <view class="tool-grid">
+    <view class="tool-btn" bindtap="goPomodoro">
+      <text class="tool-e">🍅</text><text class="tool-t">番茄钟</text><text class="tool-d">专注一小段</text>
+    </view>
+    <view class="tool-btn" bindtap="goMood">
+      <text class="tool-e">🌤️</text><text class="tool-t">情绪打卡</text><text class="tool-d">写下此刻</text>
+    </view>
+    <view class="tool-btn" bindtap="goCommunity">
+      <text class="tool-e">🌊</text><text class="tool-t">手记</text><text class="tool-d">写给自己</text>
+    </view>
+  </view>
+
+  <!-- 心里有底 -->
+  <view class="section-title">心里有底</view>
+  <view class="tool-grid">
+    <view class="tool-btn" bindtap="goSafety">
+      <text class="tool-e">🛟</text><text class="tool-t">安全计划</text><text class="tool-d">为自己备好退路</text>
+    </view>
+    <view class="tool-btn" bindtap="goThreegood">
+      <text class="tool-e">🌟</text><text class="tool-t">三件好事</text><text class="tool-d">每天记三件小确幸</text>
+    </view>
+  </view>
+
+  <!-- 值得一读 -->
+  <view class="section-title">值得一读</view>
+  <view class="read-list">
+    <view
+      class="read-item"
+      wx:for="{{reads}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="goArticle"
+    >
+      <text class="read-title">{{item.title}}</text>
+      <text class="read-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 危机入口：常驻，任何页面都够得着 -->
+  <view class="sos" bindtap="openSos">
+    <text class="sos-e">🆘</text>
+    <text class="sos-t">我现在很不好，需要人帮忙</text>
+  </view>
+
+  <view class="disclaimer">
+    见岸不能替代专业医疗或心理治疗。
+  </view>
+  <view class="disclaimer" bindtap="goAbout">关于见岸 · 隐私与数据管理 ›</view>
+</view>

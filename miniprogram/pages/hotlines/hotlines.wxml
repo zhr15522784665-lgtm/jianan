@@ -1,0 +1,80 @@
+<!-- pages/hotlines/hotlines.wxml -->
+<view class="hot-page">
+  <!-- 顶部说明：先把最重要的说清楚 -->
+  <view class="top-tip">
+    <view class="top-tip-title">🆘 你很重要</view>
+    <view class="top-tip-text">如果你正有伤害自己的念头，请立刻拨打下方号码，或告诉身边信任的人。你不需要一个人扛。</view>
+  </view>
+
+  <!-- 搜索 -->
+  <view class="search-bar">
+    <text class="search-icon">🔍</text>
+    <input
+      class="search-input"
+      value="{{keyword}}"
+      bindinput="onSearch"
+      placeholder="搜省份、号码或机构，如「北京」「12356」"
+      confirm-type="search"
+    />
+    <text class="search-clear" wx:if="{{keyword}}" bindtap="clearKeyword">✕</text>
+  </view>
+
+  <scroll-view scroll-x="true" class="prov-bar">
+    <view class="prov-chip {{activeProv === '' ? 'on' : ''}}" bindtap="resetFilter">全部</view>
+    <view
+      class="prov-chip {{activeProv === item.p ? 'on' : ''}}"
+      wx:for="{{provinces}}"
+      wx:key="p"
+      data-p="{{item.p}}"
+      bindtap="tapProv"
+    >{{item.p}}</view>
+  </scroll-view>
+
+  <!-- 全国热线：置顶，最稳妥的首选 -->
+  <view class="sec-title">📞 全国通用（24 小时，首选）</view>
+  <view class="nation-card">
+    <view class="hot" wx:for="{{nation}}" wx:key="tel" data-tel="{{item.tel}}" bindtap="call" bindlongpress="copyTel">
+      <view class="hot-main">
+        <view class="hot-name">{{item.name}}</view>
+        <view class="hot-note" wx:if="{{item.note}}">{{item.note}}</view>
+      </view>
+      <view class="hot-right">
+        <text class="hot-tel">{{item.tel}}</text>
+        <text class="hot-call">拨打</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 各省热线 -->
+  <view class="sec-title">
+    📍 各省官方热线
+    <text class="sec-sub">共 {{provinces.length}} 个地区 · {{hotCount}} 个提供 24 小时服务</text>
+  </view>
+
+  <view class="prov-list" wx:if="{{filtered.length}}">
+    <view class="hot" wx:for="{{filtered}}" wx:key="p" data-tel="{{item.tel}}" bindtap="call" bindlongpress="copyTel">
+      <view class="hot-main">
+        <view class="hot-name">
+          <text class="prov-tag">{{item.p}}</text>
+          <text class="h24-tag {{item.h24 ? 'on' : ''}}">{{item.h24 ? '24h' : '非全天'}}</text>
+        </view>
+        <view class="hot-note">{{item.h24 ? '24 小时' : item.time}} · {{item.org}}</view>
+      </view>
+      <view class="hot-right">
+        <text class="hot-tel">{{item.tel}}</text>
+        <text class="hot-call">拨打</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <view class="empty-emoji">🔍</view>
+    <view class="empty-text">没有找到匹配的热线</view>
+    <view class="empty-btn" bindtap="resetFilter">清除筛选</view>
+  </view>
+
+  <view class="foot-tip">
+    长按任意号码可复制。以上号码来自国家及各地卫生健康部门公开渠道，若号码或服务时间有调整，以主办方最新公告为准。
+  </view>
+  <view class="foot-tip danger">遇到紧急情况（如已发生自伤行为），请优先拨打 120 或 110。</view>
+</view>

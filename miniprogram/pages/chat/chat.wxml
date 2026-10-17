@@ -1,0 +1,147 @@
+<!-- pages/chat/chat.wxml -->
+<view class="chat-page">
+  <!-- 人格切换 -->
+  <scroll-view class="persona-bar" scroll-x="true">
+    <view
+      class="persona-chip {{current.id === item.id ? 'active' : ''}}"
+      wx:for="{{personas}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="selectPersona"
+    >{{item.avatar}} {{item.name}}</view>
+  </scroll-view>
+
+  <scroll-view class="ocd-chip-bar" scroll-x="true">
+    <view class="ocd-chip {{ocdSubtypeHint === item.id ? 'active' : ''}}" wx:for="{{ocdSubtypes}}" wx:key="id" data-id="{{item.id}}" bindtap="selectOcdSubtype">当前困扰：{{item.name}}</view>
+  </scroll-view>
+
+  <!-- 当前陪伴者情绪态（emotion_label 三态载体；危机优先，由安全层驱动） -->
+  <view class="persona-face face-{{faceClass}}" wx:if="{{current.id}}">
+    <view class="persona-face-avatar">{{current.avatar}}</view>
+    <view class="persona-face-meta">
+      <view class="persona-face-name">{{current.name}}</view>
+      <view class="persona-face-state">
+        <block wx:if="{{faceClass === 'serious'}}">严肃陪伴中</block>
+        <block wx:elif="{{faceClass === 'care'}}">在认真听</block>
+        <block wx:else>陪着你</block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 危机干预卡（触发后常驻，直到手动收起或开启新对话） -->
+  <view class="crisis" wx:if="{{isCrisis}}">
+    <view class="crisis-head">
+      <view class="crisis-title">你很重要，请先照顾好自己</view>
+      <view class="crisis-close" bindtap="dismissCrisis">✕</view>
+    </view>
+    <view class="crisis-text">如果你有伤害自己的念头，请立刻联系专业援助，或告诉身边信任的人。</view>
+    <view class="crisis-hot" wx:for="{{hotlines}}" wx:key="tel" data-tel="{{item.tel}}" bindtap="callHotline" bindlongpress="copyTel">
+      <view class="crisis-info">
+        <text class="crisis-name">{{item.name}}</text>
+        <text class="crisis-note" wx:if="{{item.note}}">{{item.note}}</text>
+      </view>
+      <view class="crisis-act">
+        <text class="crisis-tel">{{item.tel}}</text>
+        <text class="crisis-call">拨打</text>
+      </view>
+    </view>
+    <view class="crisis-plan" bindtap="goSafety">先为自己备一份安全计划 ›</view>
+    <view class="crisis-more" bindtap="goHotlines">查看全部援助热线 ›</view>
+  </view>
+
+  <!-- 黄色安全确认卡：不先下结论，只确认当前是否存在现实危险 -->
+  <view class="safety-check-card" wx:if="{{safetyCheckVisible && !isCrisis}}">
+    <view class="safety-check-title">我想先确认{{safetyTarget === 'other' ? '对方' : '你'}}此刻的安全</view>
+    <view class="safety-check-text" wx:if="{{safetyTarget === 'other'}}">你提到的这个人现在是否正处于即时危险，或已经准备了伤害自己的物品？</view>
+    <view class="safety-check-text" wx:else>你现在是否有伤害自己的意图、具体计划，或已经准备了相关物品？</view>
+    <view class="safety-check-actions">
+      <view class="safety-check-button danger" data-answer="yes" bindtap="onSafetyAnswer">有，存在现实危险</view>
+      <view class="safety-check-button unsure" data-answer="unsure" bindtap="onSafetyAnswer">不确定，担心会失控</view>
+      <view class="safety-check-button safe" data-answer="no" bindtap="onSafetyAnswer">没有意图、计划或准备</view>
+    </view>
+    <view class="safety-check-foot">如已发生即时危险，请立即拨打 120、110 或 12356。</view>
+  </view>
+
+  <!-- 不确定性暂停键：只在非危机、无需安全追问时出现 -->
+  <view class="uncertainty-card" wx:if="{{uncertaintyPauseVisible && !isCrisis && !safetyCheckVisible}}">
+    <view class="uncertainty-head">
+      <view class="uncertainty-title">要不要先暂停寻找确定答案？</view>
+      <view class="uncertainty-close" bindtap="cancelUncertaintyPause">✕</view>
+    </view>
+    <view class="uncertainty-text">继续确认可能只能让焦虑短暂下降。可以先把再次确认推迟 2 分钟，看看不适会怎样变化。</view>
+
+    <view wx:if="{{!uncertaintyPauseRunning && !uncertaintyPauseCompleted}}">
+      <view class="suds-label">开始前的不适：{{uncertaintySudsBefore}} / 100</view>
+      <slider min="0" max="100" step="5" value="{{uncertaintySudsBefore}}" activeColor="#3e9b8f" bindchange="onSudsBeforeChange" />
+      <view class="uncertainty-primary" bindtap="startUncertaintyPause">暂停 2 分钟</view>
+    </view>
+
+    <view wx:if="{{uncertaintyPauseRunning}}" class="uncertainty-running">
+      <view class="uncertainty-timer">{{uncertaintyPauseRemaining}} 秒</view>
+      <view class="uncertainty-hint">先不继续确认，把注意力放回呼吸、脚底触感或手头正在做的事。</view>
+      <view class="uncertainty-secondary" bindtap="cancelUncertaintyPause">先结束这次暂停</view>
+    </view>
+
+    <view wx:if="{{uncertaintyPauseCompleted}}">
+      <view class="suds-label">两分钟后的不适：{{uncertaintySudsAfter}} / 100</view>
+      <slider min="0" max="100" step="5" value="{{uncertaintySudsAfter}}" activeColor="#3e9b8f" bindchange="onSudsAfterChange" />
+      <view class="uncertainty-change">变化：{{uncertaintySudsBefore}} → {{uncertaintySudsAfter}}</view>
+      <view class="uncertainty-actions">
+        <view class="uncertainty-primary" bindtap="completeUncertaintyPause">记录并继续聊天</view>
+        <view class="uncertainty-secondary" bindtap="repeatUncertaintyPause">再延迟 2 分钟</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI 生成内容标识：生成式 AI 服务需在界面明示，且提醒不作为专业意见 -->
+  <view class="ai-notice">回复由人工智能生成，仅供陪伴与参考，不构成医疗诊断或心理治疗建议。</view>
+  <view class="comorbidity-card" wx:if="{{comorbidityCardVisible}}">
+    <view class="comorbidity-title">有一件事值得单独看看</view>
+    <view class="comorbidity-text">你提到的睡眠或情绪变化值得单独看看，这不是诊断，但可以找精神科或心理科评估。</view>
+    <view class="comorbidity-close" bindtap="dismissComorbidityCard">知道了</view>
+  </view>
+
+  <!-- 对话区 -->
+  <scroll-view class="msg-area" scroll-y="true" scroll-top="{{scrollTop}}" scroll-with-animation="true">
+    <view class="msg {{item.role === 'user' ? 'mine' : 'ai'}}" wx:for="{{messages}}" wx:key="index">
+      <view class="bubble">{{item.content}}</view>
+      <view wx:if="{{item.failed}}" class="retry" data-i="{{index}}" bindtap="retrySend">发送失败 · 点此重试</view>
+    </view>
+    <view wx:if="{{sending}}" class="msg ai"><view class="bubble typing">正在回应…</view></view>
+  </scroll-view>
+
+  <!-- 情绪趋势 / 最近心情联动 -->
+  <view class="mood-chip" wx:if="{{trend}}" bindtap="tellTrend">
+    <text class="mood-chip-emoji">{{moodEmoji[trend.dominant]}}</text>
+    <text class="mood-chip-text">近 {{trend.n}} 次你多数感觉「{{trend.dominant}}」 · 把这段状态告诉 TA ›</text>
+  </view>
+  <view class="mood-chip" wx:elif="{{lastMood}}" bindtap="tellMood">
+    <text class="mood-chip-emoji">{{lastMood.emoji}}</text>
+    <text class="mood-chip-text">最近一次你感觉「{{lastMood.mood}}」 · 告诉 TA ›</text>
+  </view>
+
+  <!-- 快捷情绪 -->
+  <scroll-view class="quick-bar" scroll-x="true" wx:if="{{!sending}}">
+    <view class="quick-chip" wx:for="{{quick}}" wx:key="*this" data-text="{{item}}" bindtap="tapQuick">{{item}}</view>
+  </scroll-view>
+
+  <!-- 互导：新开对话 / 聊累了去正念空间 -->
+  <view class="chat-actions">
+    <view class="act" bindtap="startNewChat">＋ 开启新对话</view>
+    <view class="act" bindtap="goMindspace">🍃 去缓一缓 ›</view>
+  </view>
+
+  <!-- 输入区 -->
+  <view class="input-bar">
+    <textarea
+      class="input"
+      value="{{inputValue}}"
+      bindinput="onInput"
+      placeholder="说点什么吧…"
+      auto-height
+      maxlength="1000"
+      disable-default-padding="true"
+    />
+    <view class="send-btn {{sending ? 'disabled' : ''}}" bindtap="onSend">发送</view>
+  </view>
+</view>

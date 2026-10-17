@@ -1,0 +1,25 @@
+{
+  "name": "ocd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "4.0.2"
+  },
+  "scripts": {
+    "test": "node --test ocd-contract.test.js"
+  },
+  "description": "见岸 OCD 数据云函数：身份隔离、档案、症状日志、恐惧阶梯与自评",
+  "keywords": [
+    "wechat-miniprogram",
+    "cloudbase",
+    "ocd",
+    "data-service"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB_OWNER/jianan.git",
+    "directory": "cloudfunctions/ocd"
+  },
+  "license": "MIT",
+  "private": true
+}

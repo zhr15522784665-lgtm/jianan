@@ -1,0 +1,87 @@
+<!-- pages/community/community.wxml -->
+<view class="container community">
+  <view class="hero">
+    <view class="hero-title">手记</view>
+    <view class="hero-sub">读一点有用的，也给自己记一句话。</view>
+  </view>
+
+  <!-- 我的手记（仅保存在本机，只有自己可见） -->
+  <view class="block">
+    <view class="block-head">
+      <view class="block-title">🌊 我的手记 <text class="wall-count">{{total}}</text></view>
+      <view class="block-action" bindtap="openComposer">＋ 记一句</view>
+    </view>
+    <scroll-view class="filter-row" scroll-x="true">
+      <view
+        class="filter-chip {{filter === item ? 'on' : ''}}"
+        wx:for="{{filters}}"
+        wx:key="*this"
+        data-f="{{item}}"
+        bindtap="setFilter"
+      >{{item}}</view>
+    </scroll-view>
+    <view class="wall-scroll" scroll-x="true">
+      <view class="wall-card" wx:for="{{wall}}" wx:key="id">
+        <view class="wall-mood">{{item.mood}}</view>
+        <view class="wall-text">{{item.text}}</view>
+        <view class="wall-foot">
+          <text class="wall-from">{{item.mine ? '我写的' : (item.seed ? '见岸的话' : '本机')}}</text>
+          <text wx:if="{{item.mine}}" class="wall-del" data-id="{{item.id}}" bindtap="deleteWall">删除</text>
+        </view>
+      </view>
+    </view>
+    <view class="wall-hint">这些话只写给你自己：全部保存在这台手机上，不上传、不公开，任何人都看不到。标着「见岸的话」的几句，是见岸官方写下的陪伴语。</view>
+  </view>
+
+  <!-- 走进强迫症 · 科普 -->
+  <view class="block">
+    <view class="block-head">
+      <view class="block-title">📚 走进强迫症 · 轻科普</view>
+    </view>
+    <view
+      class="article-card"
+      wx:for="{{articles}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="goArticle"
+      hover-class="article-hover"
+    >
+      <view class="article-cat">{{item.cat}}</view>
+      <view class="article-title">{{item.title}}</view>
+      <view class="article-summary">{{item.summary}}</view>
+      <view class="article-meta">阅读约 {{item.read}} 分钟 · 更新 {{item.updated}}</view>
+    </view>
+  </view>
+
+  <view class="disclaimer">
+    科普内容仅供了解与参考，不构成诊断或治疗建议。如遇危机，请拨打全国心理援助热线 12356。
+  </view>
+</view>
+
+<!-- 手记编辑浮层（仅本机保存） -->
+<view wx:if="{{composer}}" class="mask" bindtap="closeComposer">
+  <view class="sheet" catchtap="noop">
+    <view class="sheet-title">记一句给此刻的自己</view>
+    <view class="mood-row">
+      <view
+        class="mood-tag {{draftMood === item.k ? 'on' : ''}}"
+        wx:for="{{moodTags}}"
+        wx:key="k"
+        data-mood="{{item.k}}"
+        bindtap="pickMood"
+      >{{item.e}} {{item.k}}</view>
+    </view>
+    <textarea
+      class="sheet-input"
+      value="{{draftText}}"
+      bindinput="onDraftInput"
+      placeholder="写给此刻的自己，只有你自己能看到…"
+      maxlength="120"
+      auto-height
+    />
+    <view class="sheet-btns">
+      <view class="sheet-cancel" bindtap="closeComposer">取消</view>
+      <view class="sheet-ok" bindtap="submitWall">记下</view>
+    </view>
+  </view>
+</view>

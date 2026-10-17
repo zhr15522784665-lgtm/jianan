@@ -1,0 +1,37 @@
+<!-- pages/threegood/threegood.wxml -->
+<view class="container tg">
+  <view class="tg-head">
+    <view class="tg-title">三件好事</view>
+    <view class="tg-sub">每天想三件今天还不错的小事，久了心会轻一点。</view>
+  </view>
+
+  <view class="tg-card">
+    <view class="tg-date">{{today}}</view>
+    <view class="tg-tip">可以是很小的事：一顿好饭、一句问候、按时睡了。</view>
+
+    <view class="tg-row" wx:for="{{items}}" wx:key="index">
+      <text class="tg-no">{{index + 1}}</text>
+      <input
+        class="tg-input"
+        value="{{item}}"
+        data-i="{{index}}"
+        bindinput="onInput"
+        placeholder="第 {{index + 1}} 件…"
+        maxlength="60"
+      />
+    </view>
+
+    <view class="tg-saved" wx:if="{{savedToday}}">已保存今天的记录，随时可改</view>
+    <view class="tg-save" bindtap="save">{{savedToday ? '更新今天' : '保存今天'}}</view>
+  </view>
+
+  <view class="tg-recent" wx:if="{{recent.length}}">
+    <view class="tg-recent-title">最近的记录</view>
+    <view class="tg-day" wx:for="{{recent}}" wx:key="date">
+      <view class="tg-day-d">{{item.date}}</view>
+      <view class="tg-day-item" wx:for="{{item.items}}" wx:for-item="t" wx:key="*this">{{t}}</view>
+    </view>
+  </view>
+
+  <view class="tg-foot">只存在你的设备里，不上传，也不会用于训练。</view>
+</view>

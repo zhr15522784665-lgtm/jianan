@@ -1,0 +1,60 @@
+<!-- pages/mindspace/mindspace.wxml -->
+<view class="container ms">
+  <view class="ms-hero">
+    <view class="ms-hero-title">🌿 缓一缓</view>
+    <view class="ms-hero-sub">难受的时候，先让身体慢下来。</view>
+  </view>
+
+  <!-- 今日状态卡 -->
+  <view class="ms-today" bindtap="openTool" data-page="/pages/mood/mood">
+    <block wx:if="{{moodToday}}">
+      <view class="ms-today-emoji">{{moodEmoji[moodToday.mood]}}</view>
+      <view class="ms-today-text">
+        <view class="ms-today-title">今日已打卡 · 感觉{{moodToday.mood}}</view>
+        <view class="ms-today-sub">点此查看回顾或重新记录</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="ms-today-emoji">🌤️</view>
+      <view class="ms-today-text">
+        <view class="ms-today-title">今天还没打卡</view>
+        <view class="ms-today-sub">先花 10 秒记录一下心情吧</view>
+      </view>
+    </block>
+    <view class="ms-today-arrow">›</view>
+  </view>
+
+  <!-- 今日自我关怀概览（数据回流，让模块衔接有连贯感） -->
+  <view class="ms-overview">
+    <view class="ms-ov">
+      <view class="ms-ov-num">{{overview.minutes}}<text class="ms-ov-unit">分</text></view>
+      <view class="ms-ov-label">今日专注</view>
+    </view>
+    <view class="ms-ov">
+      <view class="ms-ov-num">{{overview.meditation}}<text class="ms-ov-unit">次</text></view>
+      <view class="ms-ov-label">今日冥想</view>
+    </view>
+    <view class="ms-ov">
+      <view class="ms-ov-num">{{overview.sessions}}<text class="ms-ov-unit">段</text></view>
+      <view class="ms-ov-label">专注次数</view>
+    </view>
+  </view>
+
+  <view class="ms-grid">
+    <view
+      class="ms-card"
+      wx:for="{{tools}}"
+      wx:key="key"
+      data-page="{{item.page}}"
+      bindtap="openTool"
+      hover-class="ms-card-hover"
+      style="animation-delay: {{index * 60}}ms"
+    >
+      <view class="ms-card-icon">{{item.icon}}</view>
+      <view class="ms-card-title">{{item.title}}</view>
+      <view class="ms-card-desc">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <view class="ms-foot">这些练习不能替代专业帮助。若处于危机，请拨打 12356。</view>
+</view>

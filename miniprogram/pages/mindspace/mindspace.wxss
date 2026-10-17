@@ -1,0 +1,132 @@
+/* pages/mindspace/mindspace.wxss */
+.ms {
+  padding: 40rpx 0 60rpx;
+}
+
+.ms-hero {
+  text-align: center;
+  margin-bottom: 36rpx;
+  animation: fadeUp 0.4s ease both;
+}
+.ms-hero-title {
+  font-size: 48rpx;
+  font-weight: 800;
+  color: var(--teal);
+}
+.ms-hero-sub {
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  margin-top: 10rpx;
+}
+
+.ms-today {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  background: linear-gradient(135deg, #e6f4f1, #f3f7f6);
+  border: 2rpx solid var(--line);
+  border-radius: 24rpx;
+  padding: 26rpx 28rpx;
+  margin-bottom: 36rpx;
+  animation: fadeUp 0.5s ease both;
+}
+.ms-today-emoji {
+  font-size: 52rpx;
+}
+.ms-today-text {
+  flex: 1;
+}
+.ms-today-title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.ms-today-sub {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  margin-top: 4rpx;
+}
+.ms-today-arrow {
+  font-size: 44rpx;
+  color: var(--teal);
+}
+
+.ms-overview {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 36rpx;
+}
+.ms-ov {
+  flex: 1;
+  text-align: center;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx 8rpx;
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.06);
+  animation: fadeUp 0.55s ease both;
+}
+.ms-ov-num {
+  font-size: 40rpx;
+  font-weight: 800;
+  color: var(--teal);
+}
+.ms-ov-unit {
+  font-size: 22rpx;
+  font-weight: 600;
+  margin-left: 2rpx;
+}
+.ms-ov-label {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  margin-top: 6rpx;
+}
+
+.ms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+}
+.ms-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx 28rpx;
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.06);
+  animation: fadeUp 0.5s ease both;
+}
+.ms-card-hover {
+  transform: scale(0.97);
+  opacity: 0.92;
+}
+.ms-card-icon {
+  font-size: 56rpx;
+}
+.ms-card-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-top: 14rpx;
+}
+.ms-card-desc {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  margin-top: 8rpx;
+  line-height: 1.5;
+}
+
+.ms-foot {
+  margin-top: 44rpx;
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.7;
+  padding: 0 12rpx;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

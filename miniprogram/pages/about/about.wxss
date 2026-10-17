@@ -1,0 +1,195 @@
+/* pages/about/about.wxss */
+.about {
+  padding: 32rpx 0 64rpx;
+  animation: fadeUp 0.45s ease both;
+}
+.about .card {
+  margin-bottom: 24rpx;
+}
+
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 0 36rpx;
+}
+.brand-logo {
+  width: 152rpx;
+  height: 152rpx;
+  border-radius: 38rpx;
+  box-shadow: 0 12rpx 32rpx rgba(14, 148, 136, 0.18);
+  background: linear-gradient(135deg, #0e9488, #14b8a6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 84rpx;
+  line-height: 1;
+}
+.brand-name {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: var(--teal-dark);
+  margin-top: 18rpx;
+  letter-spacing: 8rpx;
+}
+.brand-slogan {
+  font-size: 24rpx;
+  color: var(--ink-soft);
+  margin-top: 8rpx;
+  letter-spacing: 2rpx;
+}
+.about-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-bottom: 14rpx;
+  color: var(--teal-dark);
+}
+.about-title.danger {
+  color: var(--danger);
+}
+.about-p {
+  font-size: 26rpx;
+  color: var(--ink);
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.crisis-card {
+  background: var(--danger-soft);
+  border: 2rpx solid #f3b5b5;
+}
+.hot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18rpx 0;
+  border-top: 2rpx solid #f3c9c9;
+}
+.hot:first-of-type {
+  border-top: none;
+}
+.hot-name {
+  font-size: 26rpx;
+  color: var(--ink);
+}
+.hot-note {
+  font-size: 22rpx;
+  color: #8a3a3a;
+  margin-top: 4rpx;
+}
+.hot-main {
+  flex: 1;
+  min-width: 0;
+  padding-right: 16rpx;
+}
+.hot-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.hot-tel {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--danger);
+  letter-spacing: 1rpx;
+}
+.hot-call {
+  font-size: 22rpx;
+  color: #fff;
+  background: var(--danger);
+  padding: 6rpx 20rpx;
+  border-radius: 24rpx;
+  margin-top: 6rpx;
+}
+.hot:active {
+  opacity: 0.65;
+}
+.hot-more {
+  margin-top: 18rpx;
+  padding: 20rpx;
+  text-align: center;
+  background: var(--teal-soft);
+  border-radius: 16rpx;
+  font-size: 25rpx;
+  color: var(--teal-dark);
+  font-weight: 600;
+}
+.hot-more:active {
+  opacity: 0.7;
+}
+.hot-tip {
+  font-size: 21rpx;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 2rpx solid var(--line);
+}
+
+.privacy {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  margin-top: 16rpx;
+}
+
+/* 我的数据：导出 / 清除 */
+.data-card {
+  border: 2rpx solid var(--line);
+}
+.data-hint {
+  margin-bottom: 20rpx;
+}
+.data-actions {
+  display: flex;
+  gap: 20rpx;
+}
+.data-btn {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: 600;
+  padding: 20rpx 0;
+  border-radius: 28rpx;
+}
+.data-btn.ghost {
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+.data-btn.danger {
+  background: #fdecec;
+  color: var(--danger);
+  border: 2rpx solid #f3b5b5;
+}
+.data-btn.wide {
+  margin-top: 16rpx;
+}
+.data-btn:active {
+  opacity: 0.6;
+}
+/* 备份进行中：视觉上变淡并禁用点击（防重复触发） */
+.data-btn.is-busy {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.legal-links {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 20rpx;
+  padding: 0 28rpx;
+}
+.legal-link {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 0;
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 20rpx;
+  color: var(--teal-dark);
+  font-size: 26rpx;
+}
+.legal-link-hover {
+  background: #eef6f5;
+}

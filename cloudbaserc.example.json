@@ -1,0 +1,30 @@
+{
+  "envId": "your-cloud-env-id",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    {
+      "name": "chat",
+      "runtime": "Nodejs18.15",
+      "installDependency": true,
+      "timeout": 60,
+      "envVariables": {
+        "DEEPSEEK_API_KEY": "<填入你的 API Key —— 本文件已被 .gitignore 排除，不会进仓库>",
+        "DEEPSEEK_BASE_URL": "https://api.deepseek.com",
+        "DEEPSEEK_MODEL": "deepseek-flash",
+        "DEEPSEEK_REASONING_EFFORT": "none",
+        "SAFETY_ROUTER_V2_MODE": "shadow",
+        "EMOTION_LABEL_MODE": "shadow",
+        "OCD_ROUTER_MODE": "shadow",
+        "UNCERTAINTY_PAUSE_ENABLED": "1",
+        "AIPING_API_KEY": "",
+        "AIPING_BASE_URL": ""
+      }
+    },
+    {
+      "name": "ocd",
+      "runtime": "Nodejs18.15",
+      "installDependency": true,
+      "timeout": 60
+    }
+  ]
+}

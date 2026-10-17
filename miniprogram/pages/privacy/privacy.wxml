@@ -1,0 +1,46 @@
+<!-- pages/privacy/privacy.wxml -->
+<view class="container legal">
+  <view class="legal-head">
+    <view class="legal-title">隐私政策</view>
+    <view class="legal-date">生效日期：2026-09-02</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">一、我们收集的信息</view>
+    <view class="about-p">见岸尽可能减少数据收集。我们仅在你使用功能时处理必要信息：</view>
+    <view class="about-p">· <text class="b">用户标识（OpenID）</text>：在调用云函数时，微信平台会向我们提供你的 OpenID，仅用于区分请求身份、隔离云端自助记录与基础服务调用；<text class="b">我们不获取你的昵称、头像、性别、地区等个人信息</text>。</view>
+    <view class="about-p">· <text class="b">对话内容</text>：为生成回复，你输入的对话文本会经服务端云函数转发给所配置的大模型服务（默认 DeepSeek）以生成回复。我们不将对话写入自助记录数据库；模型服务的数据保存和使用规则以其服务条款及运营方公示为准。</view>
+    <view class="about-p">· <text class="b">情绪打卡</text>：你记录的今天心情与备注仅保存在本机。OCD 自评、暴露阶梯、症状日志等健康自助记录属于敏感信息，只有在对应页面单独勾选并同意后才会保存到云端，并按微信 OpenID 隔离。</view>
+    <view class="about-p">· <text class="b">设备与日志</text>：为排查故障，我们可能收集匿名崩溃日志，不含对话正文。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">二、信息如何使用</view>
+    <view class="about-p">这些信息仅用于提供对话陪伴与自助练习、展示你自己的历史和统计；对话文本按第三方服务条款转发给大模型生成回复。健康自助记录不用于模型训练或广告推送，不向其他用户开放。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">三、第三方服务</view>
+    <view class="about-p">对话文本会经腾讯云开发转发至所配置的模型服务。仅向提供服务所必需的服务方传递所需信息；运营方应公示实际服务方、数据处理规则及联系方式。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">四、数据存储与安全</view>
+    <view class="about-p">本地数据由微信平台托管。你单独同意保存的健康自助记录会存储在云端，并使用微信身份做用户隔离；对话内容仍按对话服务处理。你可在「关于」页确认删除当前账号的云端健康自助记录。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">五、未成年人</view>
+    <view class="about-p">建议在监护人指导下使用。我们不会主动向未成年人推送与危机相关的诱导内容；如你或身边人处于危机，请拨打全国心理援助热线 12356。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">六、你的权利</view>
+    <view class="about-p">你可以在「关于」页清除或导出本机记录，另行确认删除云端自评、阶梯、日志和档案。云端删除不清理已导出的文件。本机备份不包含云端记录。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">七、联系我们</view>
+    <view class="about-p">如对本政策有疑问，请通过「关于」页提供的实际运营联系方式联系我们。发布前应由运营方在此处填写有效邮箱和主体信息；当前版本不虚构联系方式。政策变更会在此页面更新并以生效日期标注。</view>
+  </view>
+</view>

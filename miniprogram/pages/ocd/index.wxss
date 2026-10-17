@@ -1,0 +1,82 @@
+.page {
+  padding: 38rpx 28rpx;
+  color: #203330;
+}
+.hero {
+  padding: 18rpx 4rpx 28rpx;
+}
+.title {
+  font-size: 46rpx;
+  font-weight: 700;
+  color: #0e7067;
+}
+.subtitle {
+  font-size: 26rpx;
+  color: #687d78;
+  margin-top: 12rpx;
+}
+.tool-card,
+.summary {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24rpx;
+  margin: 18rpx 0;
+  padding: 26rpx;
+  box-shadow: 0 6rpx 20rpx rgba(14, 148, 136, 0.06);
+}
+.emoji {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+.card-title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.card-desc {
+  font-size: 23rpx;
+  color: #687d78;
+  margin-top: 8rpx;
+}
+.arrow {
+  margin-left: auto;
+  font-size: 42rpx;
+  color: #94aaa5;
+}
+.summary {
+  display: block;
+  background: #e8f6f2;
+}
+.section {
+  font-size: 27rpx;
+  font-weight: 600;
+  margin-bottom: 18rpx;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 22rpx;
+  color: #5b7770;
+}
+.number {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #0e7067;
+  margin-bottom: 5rpx;
+}
+.top {
+  margin-top: 18rpx;
+  font-size: 23rpx;
+  color: #5b7770;
+}
+.notice,
+.error {
+  font-size: 23rpx;
+  line-height: 1.7;
+  color: #6b817d;
+  margin: 28rpx 4rpx;
+}
+.error {
+  color: #b4442f;
+}

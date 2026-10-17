@@ -1,0 +1,24 @@
+<!-- pages/ground/ground.wxml -->
+<view class="container ground">
+  <view class="intro">当思绪飘远或感到慌乱时，用 5-4-3-2-1 把注意力拉回身体。慢慢来，一项一项做。</view>
+
+  <view class="step" wx:for="{{steps}}" wx:key="n">
+    <view class="step-head">
+      <view class="step-num">{{item.n}}</view>
+      <view class="step-sense">{{item.sense}}</view>
+      <view class="step-check {{item.done ? 'on' : ''}}" data-i="{{index}}" bindtap="toggle">
+        {{item.done ? '✓ 完成' : '标记完成'}}
+      </view>
+    </view>
+    <view class="step-hint">{{item.hint}}</view>
+    <input
+      class="step-input"
+      placeholder="我注意到了…"
+      value="{{item.note}}"
+      data-i="{{index}}"
+      bindinput="onNote"
+    />
+  </view>
+
+  <view class="foot">做完这些，呼吸通常会稳一些。你已经在照顾自己了。</view>
+</view>

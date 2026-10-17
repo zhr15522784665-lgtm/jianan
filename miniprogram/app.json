@@ -1,0 +1,74 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/index/index",
+    "pages/chat/chat",
+    "pages/about/about",
+    "pages/breathe/breathe",
+    "pages/ground/ground",
+    "pages/mindspace/mindspace",
+    "pages/pomodoro/pomodoro",
+    "pages/meditation/meditation",
+    "pages/mood/mood",
+    "pages/threegood/threegood",
+    "pages/safety/safety",
+    "pages/hotlines/hotlines",
+    "pages/privacy/privacy",
+    "pages/terms/terms",
+    "pages/community/community",
+    "pages/article/article",
+    "pages/ocd/index",
+    "pages/ocd-assess/ocd-assess",
+    "pages/exposure/exposure",
+    "pages/ocd-log/ocd-log"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0e9488",
+    "navigationBarTitleText": "见岸",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f3f7f6"
+  },
+  "tabBar": {
+    "color": "#5b6b68",
+    "selectedColor": "#0e9488",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tabbar/home.png",
+        "selectedIconPath": "assets/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "对话",
+        "iconPath": "assets/tabbar/chat.png",
+        "selectedIconPath": "assets/tabbar/chat-active.png"
+      },
+      {
+        "pagePath": "pages/mindspace/mindspace",
+        "text": "缓一缓",
+        "iconPath": "assets/tabbar/mindspace.png",
+        "selectedIconPath": "assets/tabbar/mindspace-active.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "手记",
+        "iconPath": "assets/tabbar/community.png",
+        "selectedIconPath": "assets/tabbar/community-active.png"
+      },
+      {
+        "pagePath": "pages/ocd/index",
+        "text": "练习",
+        "iconPath": "assets/tabbar/practice.png",
+        "selectedIconPath": "assets/tabbar/practice-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "__usePrivacyCheck__": true,
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

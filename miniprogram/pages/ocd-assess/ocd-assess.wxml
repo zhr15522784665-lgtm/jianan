@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="title">OCD 自评</view>
+  <view wx:if="{{stage === 'choose'}}">
+    <view class="intro">这是自助观察，不是诊断。请选择版本，完成后可查看下一步建议。</view>
+    <checkbox-group bindchange="checkDisclaimer"><label class="consent"><checkbox value="yes" checked="{{disclaimer}}"/>我理解这不是诊断</label></checkbox-group>
+    <checkbox-group bindchange="checkCloudConsent"><label class="consent"><checkbox value="yes" checked="{{cloudConsent}}"/>我同意将本次自评结果作为敏感健康信息保存到云端（可选）</label></checkbox-group>
+    <button bindtap="choose" data-version="brief-12">简化版 · 12题 · 2–3分钟</button>
+    <button bindtap="choose" data-version="detail-18">详细版 · 18题 · 4–5分钟</button>
+  </view>
+  <view wx:elif="{{stage === 'quiz'}}">
+    <view class="progress">第 {{current + 1}} / {{items.length}} 题</view>
+    <view class="question">{{items[current]}}</view>
+    <view class="options">
+      <button wx:for="{{options}}" wx:key="index" class="{{answers[current] === index ? 'selected' : ''}}" data-value="{{index}}" bindtap="answer">{{item}}</button>
+    </view>
+    <view class="nav">
+      <button bindtap="prev" wx:if="{{current > 0}}">上一题</button>
+      <button bindtap="next">{{current + 1 === items.length ? '查看结果' : '下一题'}}</button>
+    </view>
+  </view>
+  <view wx:else>
+    <view class="result">
+      <view class="result-band">{{result.band}}</view>
+      <view>得分 {{result.score}} / {{result.maxScore}}</view>
+      <view class="disclaimer">这不是诊断，不能替代专业评估。</view>
+      <view class="next">{{result.nextStep}}</view>
+    </view>
+    <button bindtap="restart">重新自评</button>
+    <button wx:if="{{error && cloudConsent}}" bindtap="retrySave" loading="{{saving}}">重试保存</button>
+  </view>
+  <view class="saving" wx:if="{{saving}}">正在保存结果…</view>
+  <view class="error" wx:if="{{error}}">{{error}}</view>
+</view>

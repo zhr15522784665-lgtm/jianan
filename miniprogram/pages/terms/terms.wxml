@@ -1,0 +1,47 @@
+<!-- pages/terms/terms.wxml -->
+<view class="container legal">
+  <view class="legal-head">
+    <view class="legal-title">用户协议</view>
+    <view class="legal-date">生效日期：2026-08-22</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">一、服务说明</view>
+    <view class="about-p">见岸是一个 AI 心理陪伴工具，提供情绪倾听、心理学知识科普，以及呼吸训练、冥想引导、专注计时、情绪打卡等自助练习。见岸<text class="b">不构成医疗诊断、心理治疗或用药建议</text>，不替代医生、精神科或专业心理治疗。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">二、使用方式</view>
+    <view class="about-p">本工具以匿名方式使用，无需注册账号。你承诺不利用本服务从事违法、骚扰、传播违法或有害信息等行为。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">三、AI 内容免责</view>
+    <view class="about-p">由人工智能生成的回复仅供参考与陪伴，不作为专业意见。因依赖相关内容产生的任何后果，由使用者自行承担。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">四、危机情形</view>
+    <view class="about-p">当你或身边的人处于情绪危机、或有伤害自己的念头时，请<text class="b">立即拨打全国心理援助热线 12356</text>，或前往就近医疗机构寻求专业帮助。见岸不能替代紧急救援。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">五、知识产权</view>
+    <view class="about-p">「见岸」名称、logo 与界面设计归运营方所有。你与 AI 的对话内容依平台规则处理，不用于对外公开或训练。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">六、服务的变更与中断</view>
+    <view class="about-p">为维护、合规或安全需要，我们保留暂停、调整部分功能的权利，并尽力提前告知。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">七、协议变更</view>
+    <view class="about-p">我们可能更新本协议，更新后以本页面标注的生效日期为准。继续使用即视为同意变更后的内容。</view>
+  </view>
+
+  <view class="card">
+    <view class="about-title">八、联系我们</view>
+    <view class="about-p">如有疑问，可通过「关于」页的热线或运营邮箱联系我们。</view>
+  </view>
+</view>

@@ -1,0 +1,34 @@
+{
+  "name": "jianan-miniprogram",
+  "version": "1.0.0",
+  "private": true,
+  "description": "见岸：基于微信云开发的 OCD 心理自助小程序，包含规则安全分诊、AI 陪伴、症状日志与暴露练习。",
+  "license": "MIT",
+  "keywords": [
+    "wechat-miniprogram",
+    "cloudbase",
+    "ocd",
+    "mental-health",
+    "deepseek",
+    "self-help"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB_OWNER/jianan.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:safety": "node --test cloudfunctions/chat/safety-router.test.js",
+    "check:integrity": "node scripts/check-integrity.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run check:integrity && npm run format:check && npm test"
+  },
+  "devDependencies": {
+    "acorn": "8.15.0",
+    "prettier": "3.6.2"
+  }
+}

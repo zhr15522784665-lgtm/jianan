@@ -1,0 +1,29 @@
+<!-- pages/breathe/breathe.wxml -->
+<view class="container breathe">
+  <view class="tip">跟着圆圈节奏呼吸：吸气时膨胀，呼气时收缩，让身体慢慢松下来。</view>
+
+  <!-- 节奏预设 -->
+  <view class="patterns">
+    <view
+      class="pattern {{patternIdx === index ? 'on' : ''}}"
+      wx:for="{{patterns}}" wx:key="key"
+      data-i="{{index}}" bindtap="selectPattern"
+    >{{item.label}}</view>
+  </view>
+
+  <view class="stage">
+    <view class="circle {{running ? phase : 'ready'}}" style="transition: transform {{phaseDur}}s ease-in-out;">
+      <view class="circle-inner">
+        <view class="phase-label">{{phaseLabel}}</view>
+        <view class="count" wx:if="{{running}}">{{count}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="rounds" wx:if="{{running}}">已完成 {{rounds}} 轮</view>
+
+  <view class="ctrl">
+    <view class="btn btn-primary" wx:if="{{!running}}" bindtap="start">开始</view>
+    <view class="btn btn-ghost" wx:if="{{running}}" bindtap="stop">停止</view>
+  </view>
+</view>

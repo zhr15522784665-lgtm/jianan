@@ -1,0 +1,555 @@
+/* pages/chat/chat.wxss */
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  background: var(--bg);
+  animation: fadeUp 0.4s ease both;
+}
+
+/* 人格切换条 */
+.persona-bar {
+  white-space: nowrap;
+  padding: 16rpx 20rpx;
+  background: #fff;
+  border-bottom: 2rpx solid var(--line);
+}
+.persona-chip {
+  display: inline-block;
+  padding: 10rpx 24rpx;
+  margin-right: 14rpx;
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+.persona-chip.active {
+  background: var(--teal);
+  color: #fff;
+}
+
+/* AI 生成内容提示条 */
+.ai-notice {
+  padding: 12rpx 24rpx;
+  background: #f6f7f9;
+  border-bottom: 2rpx solid var(--line);
+  font-size: 21rpx;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* 危机卡 */
+.crisis {
+  margin: 16rpx 24rpx;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  background: var(--danger-soft);
+  border: 2rpx solid #f3b5b5;
+}
+.crisis-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.crisis-title {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--danger);
+}
+.crisis-close {
+  width: 44rpx;
+  height: 44rpx;
+  flex: none;
+  margin-left: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #a86060;
+  border-radius: 50%;
+}
+.crisis-text {
+  font-size: 24rpx;
+  color: #8a3a3a;
+  margin: 8rpx 0 16rpx;
+  line-height: 1.6;
+}
+.crisis-hot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14rpx 18rpx;
+  background: #fff;
+  border-radius: 14rpx;
+  margin-bottom: 10rpx;
+}
+.crisis-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding-right: 16rpx;
+}
+.crisis-name {
+  font-size: 24rpx;
+  color: var(--ink);
+}
+.crisis-note {
+  font-size: 20rpx;
+  color: var(--ink-soft);
+  margin-top: 4rpx;
+  line-height: 1.4;
+}
+.crisis-act {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.crisis-tel {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--danger);
+  letter-spacing: 1rpx;
+  margin-right: 14rpx;
+}
+.crisis-call {
+  font-size: 22rpx;
+  color: #fff;
+  background: var(--danger);
+  padding: 6rpx 20rpx;
+  border-radius: 24rpx;
+}
+.crisis-plan {
+  margin-top: 12rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--danger);
+  background: #fff;
+  border-radius: 14rpx;
+  padding: 16rpx;
+}
+.crisis-plan:active {
+  opacity: 0.7;
+}
+.crisis-more {
+  margin-top: 4rpx;
+  text-align: center;
+  font-size: 23rpx;
+  color: var(--ink-soft);
+  padding: 12rpx;
+}
+.crisis-more:active {
+  opacity: 0.6;
+}
+
+/* 安全确认卡：黄色代表需要确认，不等同于红色危机结论 */
+.safety-check-card {
+  margin: 16rpx 24rpx;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  background: #fff8e6;
+  border: 2rpx solid #e8c978;
+}
+.safety-check-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #805d12;
+}
+.safety-check-text {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: #6d5523;
+}
+.safety-check-actions {
+  margin-top: 18rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.safety-check-button {
+  padding: 16rpx 18rpx;
+  border-radius: 14rpx;
+  font-size: 24rpx;
+  text-align: center;
+  font-weight: 600;
+  background: #fff;
+}
+.safety-check-button.danger {
+  color: #a33b32;
+  border: 2rpx solid #e2aaa4;
+}
+.safety-check-button.unsure {
+  color: #805d12;
+  border: 2rpx solid #e8c978;
+}
+.safety-check-button.safe {
+  color: var(--teal-dark);
+  border: 2rpx solid #9bcfc8;
+}
+.safety-check-button:active {
+  opacity: 0.65;
+}
+.safety-check-foot {
+  margin-top: 14rpx;
+  font-size: 21rpx;
+  color: #8b7441;
+  line-height: 1.5;
+}
+
+/* 不确定性暂停键 */
+.uncertainty-card {
+  margin: 16rpx 24rpx;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  background: #eef8f6;
+  border: 2rpx solid #a8d7d1;
+}
+.uncertainty-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.uncertainty-title {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--teal-dark);
+}
+.uncertainty-close {
+  width: 44rpx;
+  height: 44rpx;
+  margin-left: 16rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 24rpx;
+}
+.uncertainty-text {
+  margin: 10rpx 0 16rpx;
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.suds-label {
+  margin-top: 8rpx;
+  font-size: 23rpx;
+  color: var(--ink-soft);
+}
+.uncertainty-primary,
+.uncertainty-secondary {
+  text-align: center;
+  border-radius: 14rpx;
+  padding: 16rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+.uncertainty-primary {
+  background: var(--teal);
+  color: #fff;
+}
+.uncertainty-secondary {
+  margin-top: 10rpx;
+  background: #fff;
+  color: var(--teal-dark);
+  border: 2rpx solid #a8d7d1;
+}
+.uncertainty-primary:active,
+.uncertainty-secondary:active {
+  opacity: 0.65;
+}
+.uncertainty-running {
+  text-align: center;
+  padding-top: 6rpx;
+}
+.uncertainty-timer {
+  font-size: 52rpx;
+  font-weight: 700;
+  color: var(--teal-dark);
+  letter-spacing: 2rpx;
+}
+.uncertainty-hint {
+  margin-top: 8rpx;
+  font-size: 23rpx;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.uncertainty-change {
+  margin: 8rpx 0 14rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: var(--teal-dark);
+  font-weight: 600;
+}
+.uncertainty-actions {
+  margin-top: 10rpx;
+}
+
+/* 对话区 */
+.msg-area {
+  flex: 1;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.msg {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24rpx;
+}
+.msg.mine {
+  align-items: flex-end;
+}
+.msg.ai {
+  align-items: flex-start;
+}
+.bubble {
+  max-width: 74%;
+  padding: 20rpx 26rpx;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.msg.ai .bubble {
+  background: #fff;
+  border-top-left-radius: 6rpx;
+  color: var(--ink);
+}
+.msg.mine .bubble {
+  background: var(--teal);
+  color: #fff;
+  border-top-right-radius: 6rpx;
+}
+.bubble.typing {
+  color: var(--ink-soft);
+}
+
+/* 发送失败重试 */
+.retry {
+  margin-top: 10rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  font-size: 22rpx;
+  color: #b4442f;
+  background: #fdecec;
+  border: 2rpx solid #f3b5b5;
+}
+.retry:active {
+  opacity: 0.6;
+}
+
+.bottom-anchor {
+  height: 2rpx;
+}
+
+/* 最近心情联动 chip */
+.mood-chip {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  margin: 4rpx 24rpx 0;
+  padding: 14rpx 22rpx;
+  background: var(--teal-soft);
+  border-radius: 16rpx;
+}
+.mood-chip:active {
+  opacity: 0.7;
+}
+.mood-chip-emoji {
+  font-size: 30rpx;
+}
+.mood-chip-text {
+  font-size: 24rpx;
+  color: var(--teal-dark);
+  font-weight: 600;
+}
+
+/* 快捷情绪 */
+.quick-bar {
+  white-space: nowrap;
+  padding: 12rpx 20rpx;
+  background: var(--bg);
+}
+.quick-chip {
+  display: inline-block;
+  padding: 10rpx 22rpx;
+  margin-right: 12rpx;
+  background: #fff;
+  color: var(--ink-soft);
+  border: 2rpx solid var(--line);
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}
+
+.ocd-chip-bar {
+  white-space: nowrap;
+  padding: 10rpx 20rpx 0;
+  background: var(--bg);
+}
+.ocd-chip {
+  display: inline-block;
+  padding: 10rpx 18rpx;
+  margin-right: 10rpx;
+  background: #fff;
+  color: var(--ink-soft);
+  border: 2rpx solid var(--line);
+  border-radius: 28rpx;
+  font-size: 22rpx;
+}
+.ocd-chip.active {
+  color: var(--teal-dark);
+  border-color: var(--teal);
+  background: var(--teal-soft);
+}
+.comorbidity-card {
+  margin: 12rpx 24rpx;
+  padding: 20rpx;
+  background: #fff8e8;
+  border: 2rpx solid #f2d28c;
+  border-radius: 18rpx;
+}
+.comorbidity-title {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #875d16;
+}
+.comorbidity-text {
+  margin-top: 8rpx;
+  font-size: 23rpx;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.comorbidity-close {
+  margin-top: 12rpx;
+  color: #875d16;
+  font-size: 23rpx;
+}
+
+/* 对话页 → 正念空间互导 */
+.chat-actions {
+  display: flex;
+  gap: 16rpx;
+  padding: 0 24rpx 8rpx;
+}
+.act {
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--teal);
+  padding: 14rpx 0;
+  border-radius: 28rpx;
+  background: var(--teal-soft);
+}
+.act:active {
+  opacity: 0.6;
+}
+
+/* 输入区 */
+.input-bar {
+  display: flex;
+  align-items: flex-end;
+  padding: 16rpx 20rpx;
+  background: #fff;
+  border-top: 2rpx solid var(--line);
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+}
+.input {
+  flex: 1;
+  max-height: 200rpx;
+  min-height: 72rpx;
+  padding: 18rpx 22rpx;
+  background: var(--bg);
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+.send-btn {
+  margin-left: 16rpx;
+  padding: 0 32rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: var(--teal);
+  color: #fff;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.send-btn.disabled {
+  opacity: 0.5;
+}
+
+/* ── 当前陪伴者情绪态（emotion_label 三态） ───────────────────
+   calm    = 默认柔和；care = 柔和高亮（共情态）；serious = 稳重深色边框（危机态）。
+   过渡 240ms；serious 不使用跳动、闪烁等可能造成压力的动画。 */
+.persona-face {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin: 16rpx 24rpx 4rpx;
+  padding: 18rpx 24rpx;
+  background: #fff;
+  border: 2rpx solid var(--line);
+  border-radius: 24rpx;
+  transition:
+    border-color 240ms ease,
+    background-color 240ms ease,
+    box-shadow 240ms ease;
+}
+.persona-face-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  background: var(--teal-soft);
+  transition: background-color 240ms ease;
+}
+.persona-face-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+.persona-face-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--ink);
+}
+.persona-face-state {
+  font-size: 24rpx;
+  color: var(--ink-soft);
+  transition: color 240ms ease;
+}
+
+/* care：柔和高亮，表达「在认真听」 */
+.persona-face.face-care {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  box-shadow: 0 4rpx 16rpx rgba(14, 148, 136, 0.12);
+}
+.persona-face.face-care .persona-face-state {
+  color: var(--teal);
+}
+
+/* serious：稳重深色边框，无动画 */
+.persona-face.face-serious {
+  border-color: #b45309;
+  background: #fef3e2;
+  box-shadow: none;
+}
+.persona-face.face-serious .persona-face-avatar {
+  background: #fde4c8;
+}
+.persona-face.face-serious .persona-face-state {
+  color: #92400e;
+  font-weight: 600;
+}

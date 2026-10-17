@@ -1,0 +1,119 @@
+/* pages/threegood/threegood.wxss */
+.tg {
+  padding: 40rpx 0 60rpx;
+}
+
+.tg-head {
+  text-align: center;
+  margin-bottom: 36rpx;
+  animation: fadeUp 0.4s ease both;
+}
+.tg-title {
+  font-size: 46rpx;
+  font-weight: 800;
+  color: var(--teal);
+}
+.tg-sub {
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  margin-top: 10rpx;
+  line-height: 1.6;
+}
+
+.tg-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 6rpx 24rpx rgba(14, 148, 136, 0.06);
+  animation: fadeUp 0.5s ease both;
+}
+.tg-date {
+  font-size: 24rpx;
+  color: var(--ink-soft);
+}
+.tg-tip {
+  font-size: 24rpx;
+  color: var(--ink-soft);
+  margin: 8rpx 0 24rpx;
+  line-height: 1.6;
+}
+
+.tg-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  background: var(--bg);
+  border-radius: 16rpx;
+  padding: 8rpx 20rpx;
+  margin-bottom: 16rpx;
+}
+.tg-no {
+  flex: none;
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+.tg-input {
+  flex: 1;
+  height: 72rpx;
+  font-size: 28rpx;
+}
+
+.tg-saved {
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--teal-dark);
+  margin-top: 8rpx;
+}
+.tg-save {
+  margin-top: 20rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  background: var(--teal);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tg-recent {
+  margin-top: 40rpx;
+}
+.tg-recent-title {
+  font-size: 26rpx;
+  color: var(--ink-soft);
+  margin: 0 4rpx 16rpx;
+}
+.tg-day {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(14, 148, 136, 0.05);
+}
+.tg-day-d {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  margin-bottom: 10rpx;
+}
+.tg-day-item {
+  font-size: 27rpx;
+  color: var(--ink);
+  line-height: 1.8;
+}
+
+.tg-foot {
+  font-size: 22rpx;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 28rpx;
+  line-height: 1.7;
+}

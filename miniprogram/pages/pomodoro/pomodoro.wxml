@@ -1,0 +1,144 @@
+<!-- pages/pomodoro/pomodoro.wxml -->
+<wxs module="m1">
+function pad(n){ return n < 10 ? '0' + n : '' + n; }
+function fmt(s){
+  s = s < 0 ? 0 : s;
+  var m = Math.floor(s / 60);
+  var ss = s % 60;
+  return pad(m) + ':' + pad(ss);
+}
+module.exports = { fmt: fmt };
+</wxs>
+
+<view class="container pomo">
+  <view class="pomo-head">
+    <view class="pomo-mode {{mode === 'work' ? 'work' : 'break'}}">
+      {{mode === 'work' ? '🍅 专注中' : (breakKind === 'long' ? '🌿 长休息中' : '☕ 休息中')}}
+    </view>
+    <view class="pomo-task" wx:if="{{taskName}}">{{taskName}}</view>
+  </view>
+
+  <!-- 预设选择 -->
+  <view class="presets">
+    <view
+      class="preset {{!custom && presetIdx === index ? 'on' : ''}}"
+      wx:for="{{presets}}" wx:key="label"
+      data-i="{{index}}" bindtap="selectPreset"
+    >{{item.label}}</view>
+    <view class="preset {{custom ? 'on' : ''}}" bindtap="toggleCustom">自定义</view>
+  </view>
+
+  <!-- 自定义时长 -->
+  <view class="custom" wx:if="{{custom}}">
+    <view class="mode-switch">
+      <view class="ms {{customMode === 'step' ? 'on' : ''}}" data-m="step" bindtap="setCustomMode">步进调节</view>
+      <view class="ms {{customMode === 'input' ? 'on' : ''}}" data-m="input" bindtap="setCustomMode">直接输入</view>
+    </view>
+
+    <!-- 方式一：步进 -->
+    <block wx:if="{{customMode === 'step'}}">
+      <view class="custom-row">
+        <text class="custom-label">专注</text>
+        <view class="stepper">
+          <view class="step-btn" data-d="-1" bindtap="stepWork">−</view>
+          <text class="step-val">{{customWork}} 分</text>
+          <view class="step-btn" data-d="1" bindtap="stepWork">＋</view>
+        </view>
+      </view>
+      <view class="custom-row">
+        <text class="custom-label">短休</text>
+        <view class="stepper">
+          <view class="step-btn" data-d="-1" bindtap="stepBreak">−</view>
+          <text class="step-val">{{customBreak}} 分</text>
+          <view class="step-btn" data-d="1" bindtap="stepBreak">＋</view>
+        </view>
+      </view>
+      <view class="custom-row">
+        <text class="custom-label">长休</text>
+        <view class="stepper">
+          <view class="step-btn" data-d="-1" bindtap="stepLong">−</view>
+          <text class="step-val">{{longBreak}} 分</text>
+          <view class="step-btn" data-d="1" bindtap="stepLong">＋</view>
+        </view>
+      </view>
+      <view class="custom-row">
+        <text class="custom-label">间隔</text>
+        <view class="stepper">
+          <view class="step-btn" data-d="-1" bindtap="stepEvery">−</view>
+          <text class="step-val">每 {{longBreakEvery}} 段</text>
+          <view class="step-btn" data-d="1" bindtap="stepEvery">＋</view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 方式二：直接输入 -->
+    <block wx:else>
+      <view class="custom-row">
+        <text class="custom-label">专注</text>
+        <input class="num-input" type="number" value="{{customWork}}" bindinput="onWorkInput" bindblur="applyInput" placeholder="1-600"/>
+        <text class="unit">分</text>
+      </view>
+      <view class="custom-row">
+        <text class="custom-label">短休</text>
+        <input class="num-input" type="number" value="{{customBreak}}" bindinput="onBreakInput" bindblur="applyInput" placeholder="1-120"/>
+        <text class="unit">分</text>
+      </view>
+      <view class="custom-row">
+        <text class="custom-label">长休</text>
+        <input class="num-input" type="number" value="{{longBreak}}" bindinput="onLongInput" bindblur="applyInput" placeholder="1-120"/>
+        <text class="unit">分</text>
+      </view>
+      <view class="input-tip">专注 1-600 分，休息 1-120 分，失焦时自动校正。</view>
+    </block>
+  </view>
+
+  <!-- 本段任务名 -->
+  <view class="task-row">
+    <input class="task-input" placeholder="给这段专注起个名字（可选）" value="{{taskName}}" bindinput="onTaskInput" maxlength="20"/>
+  </view>
+
+  <!-- 开关 -->
+  <view class="opts">
+    <view class="opt {{autoNext ? 'on' : ''}}" bindtap="toggleAutoNext">连续开始下一段</view>
+    <view class="opt {{longBreakOn ? 'on' : ''}}" bindtap="toggleLongBreak">每 {{longBreakEvery}} 段长休息</view>
+  </view>
+
+  <!-- 环形计时 -->
+  <view class="ring-wrap">
+    <svg class="ring" viewBox="0 0 280 280">
+      <circle cx="140" cy="140" r="120" class="ring-bg" />
+      <circle cx="140" cy="140" r="120" class="ring-fg {{mode === 'work' ? 'work' : 'break'}}"
+        stroke-dasharray="{{ringC}}" stroke-dashoffset="{{ringOffset}}" />
+    </svg>
+    <view class="ring-center">
+      <view class="ring-time">{{m1.fmt(remaining)}}</view>
+      <view class="ring-hint">{{mode === 'work' ? '保持专注' : (breakKind === 'long' ? '好好歇一会儿' : '放松一下')}}</view>
+    </view>
+  </view>
+
+  <!-- 控制 -->
+  <view class="ctrl">
+    <view class="ctrl-btn ghost" bindtap="reset">重置</view>
+    <view class="ctrl-btn primary {{running ? 'running' : ''}}" bindtap="toggleRun">
+      {{running ? '暂停' : '开始'}}
+    </view>
+  </view>
+
+  <!-- 今日统计 -->
+  <view class="stats">
+    <view class="stat">
+      <view class="stat-num">{{sessionsToday}}</view>
+      <view class="stat-label">完成专注</view>
+    </view>
+    <view class="stat">
+      <view class="stat-num">{{minutesToday}}</view>
+      <view class="stat-label">专注分钟</view>
+    </view>
+    <view class="stat">
+      <view class="stat-num">{{streak}}</view>
+      <view class="stat-label">累计段数</view>
+    </view>
+  </view>
+
+  <view class="pomo-foot">每完成一段专注会自动进入休息，并轻轻震动提醒。</view>
+</view>

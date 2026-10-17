@@ -1,0 +1,38 @@
+# 环境变量与密钥 —— 绝不提交
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+.env.development
+.env.production
+cloudbaserc.json
+project.config.json
+project.private.config.json
+
+# 依赖
+node_modules/
+
+# 构建产物
+miniprogram_npm/
+dist/
+output/
+
+# 编辑器与系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 日志与临时文件
+*.log
+*.tmp
+*.bak
+*.bak-*
+
+# 云开发本地缓存
+.cloudbase/
+
+# 项目内部整理缓存
+coverage/
