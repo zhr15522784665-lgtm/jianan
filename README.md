@@ -229,7 +229,7 @@ npm ci --ignore-scripts
 npm run check          # 静态完整性、格式、全部离线测试
 npm test               # 仅全部离线测试
 npm run test:safety    # 安全规则回归
-npm run format        # 格式化（跳过受保护规则与量表）
+npm run format         # 格式化（跳过受保护规则与量表）
 ```
 
 测试覆盖安全边界、情绪规则、输出解析与有界重试、OCD 优先级、云端鉴权/数据契约、前端计分/统计/暴露纯逻辑、共享请求封装和应用云检测。
