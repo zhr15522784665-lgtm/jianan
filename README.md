@@ -246,7 +246,7 @@ GitHub Actions 在 Node.js 22/24 执行同一套校验。
 - [验证记录与限制](docs/VALIDATION.md)
 - [GitHub 推送命令](docs/PUBLISH.md)
 
-`package.json` 的仓库地址使用明确占位符；首次发布前替换三处 `YOUR_GITHUB_OWNER`。
+三份 `package.json` 的 `repository.url` 已指向 `github.com/zhr15522784665-lgtm/jianan`。
 
 ---
 

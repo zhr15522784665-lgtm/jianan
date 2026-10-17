@@ -43,10 +43,10 @@
 Git 忽略规则及暂存区空白检查通过：示例文件和三个锁文件可提交，真实配置与依赖被排除。
 明文标识扫描未命中所检查的长密钥、AppID、私钥及遗留备案号形态。
 
-GitHub Actions 配置为 Node.js 22/24；当前实际执行的是本地 Node.js 24，远程 Actions 尚未触发。
-测试通过 mock 隔离模型与微信服务，没有使用真实 Key，没有部署云函数或创建远程仓库。
+GitHub Actions 配置为 Node.js 22/24；CI 第 2 次运行（提交 `2053499`）在两个版本上均通过，耗时 16 秒。本地复现使用 Node.js 22.22.2，250 个测试全部通过。
+测试通过 mock 隔离模型与微信服务，没有使用真实 Key，没有部署云函数。
 微信专有编译、真机、真实模型权限、数据库索引与访问规则需要部署者按 [部署指南](DEPLOYMENT.md) 完成验收。
 原有云端运行时示例为 Nodejs18.15；目标环境需确认可用且维护中的运行时。
 原有内容安全检测的 fail-open 和模型重试总耗时限制已写入部署文档，本次未改动其行为。
 
-发布前将三处 package.json 的 YOUR_GITHUB_OWNER 替换为自己的账户/组织，并使用 [PUBLISH.md](PUBLISH.md) 中的命令序列推送。
+三处 package.json 的 `repository.url` 已指向 `zhr15522784665-lgtm/jianan`，推送流程见 [PUBLISH.md](PUBLISH.md)。
