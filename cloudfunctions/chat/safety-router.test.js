@@ -50,6 +50,37 @@ test('结构化安全回答 no 返回OCD支持', () => {
   assert.equal(actual.route, ROUTES.OCD_SUPPORT);
 });
 
+test('回答「没有」不能把明确的危机文本降级', () => {
+  const actual = assessSafety('我准备今晚跳楼', {
+    pendingSafetyCheck: true,
+    safetyAnswer: 'no',
+    previousSafetyRoute: ROUTES.CLARIFY_SAFETY
+  });
+  assert.equal(actual.level, LEVELS.CRISIS);
+  assert.equal(actual.route, ROUTES.CRISIS_RESPONSE);
+  assert.equal(actual.shouldShowCrisisCard, true);
+});
+
+test('回答「不确定」遇到危机文本时仍判危机', () => {
+  const actual = assessSafety('我已经写好遗书了', {
+    pendingSafetyCheck: true,
+    safetyAnswer: 'unsure',
+    previousSafetyRoute: ROUTES.CLARIFY_SAFETY
+  });
+  assert.equal(actual.level, LEVELS.CRISIS);
+  assert.equal(actual.shouldShowCrisisCard, true);
+});
+
+test('回答「没有」遇到强迫观念文本时仍回落 OCD 支持', () => {
+  const actual = assessSafety('我脑子里冒出伤害自己的念头，但我不会去做', {
+    pendingSafetyCheck: true,
+    safetyAnswer: 'no',
+    previousSafetyRoute: ROUTES.OCD_SUPPORT
+  });
+  assert.equal(actual.level, LEVELS.OCD_INTRUSIVE);
+  assert.equal(actual.shouldShowCrisisCard, false);
+});
+
 test('他人风险回答 yes 不把用户本人标成危机', () => {
   const actual = assessSafety('有', {
     pendingSafetyCheck: true,

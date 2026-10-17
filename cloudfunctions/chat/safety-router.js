@@ -202,11 +202,12 @@ function fromSafetyAnswer(context) {
   });
 }
 
-function assessSafety(input, rawContext) {
-  const context = normalizeContext(rawContext);
-  const answerResult = fromSafetyAnswer(context);
-  if (answerResult) return answerResult;
-
+/**
+ * 纯文本规则判定：只读取消息文本，不受客户端上下文字段影响。
+ * @param {string} input 最近一条用户消息。
+ * @returns {object} 规则层安全评估结果。
+ */
+function assessText(input) {
   const text = normalize(input);
   if (!text) {
     return safetyResult(LEVELS.NONE, ROUTES.GENERAL, {
@@ -284,6 +285,30 @@ function assessSafety(input, rawContext) {
       ? ['HARM_TOPIC_AMBIGUOUS', 'LOSS_OF_CONTROL']
       : ['HARM_TOPIC_AMBIGUOUS']
   });
+}
+
+/**
+ * 综合判定：文本规则优先于客户端自报的安全上下文。
+ *
+ * `pendingSafetyCheck` 与 `safetyAnswer` 全部来自客户端，服务端无法确认
+ * 上一轮是否真的追问过、回答是否真的由用户点击产生。因此这两项只能用来
+ * 「升级」或「在文本未命中危机时降级」，不能推翻文本规则已判定的危机：
+ * 否则构造 `{ pendingSafetyCheck: true, safetyAnswer: 'no' }` 即可让任何
+ * 明确的自伤计划绕过危机卡。
+ *
+ * @param {string} input 最近一条用户消息。
+ * @param {object} rawContext 客户端安全上下文，未经验证。
+ * @returns {object} 规则层安全评估结果。
+ */
+function assessSafety(input, rawContext) {
+  const textResult = assessText(input);
+  const answerResult = fromSafetyAnswer(normalizeContext(rawContext));
+
+  // 用户明确回答「有」时立即升级为危机。
+  if (answerResult && answerResult.level === LEVELS.CRISIS) return answerResult;
+  // 文本已构成危机时不可被客户端自报的「没有」降级。
+  if (textResult.level === LEVELS.CRISIS) return textResult;
+  return answerResult || textResult;
 }
 
 function canonicalizeForRepeat(text) {
