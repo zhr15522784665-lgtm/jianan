@@ -1,12 +1,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const { builtinModules } = require('node:module');
+const { isBuiltin } = require('node:module');
 const acorn = require('acorn');
 
 const root = path.resolve(__dirname, '..');
 const errors = [];
-const builtins = new Set(builtinModules.flatMap((name) => [name, `node:${name}`]));
 const ignored = new Set(['node_modules', '.git', '.cloudbase', 'coverage', 'miniprogram_npm']);
 const relative = (file) => path.relative(root, file).split(path.sep).join('/');
 const fail = (file, message) => errors.push(`${relative(file)}: ${message}`);
@@ -83,7 +82,8 @@ function packageFor(file) {
  * @returns {void}
  */
 function checkModule(file, specifier) {
-  if (builtins.has(specifier)) return;
+  // builtinModules 不含 test / test/reporters，用 isBuiltin 才能覆盖 node:test 一类子路径内置模块。
+  if (isBuiltin(specifier)) return;
   if (!specifier.startsWith('.')) {
     const name = specifier.startsWith('@')
       ? specifier.split('/').slice(0, 2).join('/')
